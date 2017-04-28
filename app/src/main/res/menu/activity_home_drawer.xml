@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Group Stating what the options are in the drawer-->
+    <group android:checkableBehavior="single">
+        <!-- The Home Button in the drawer-->
+        <item
+            android:id="@+id/nav_first_layout"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/first_layout" />
+        <!-- The Add Item Button in the drawer-->
+        <item
+            android:id="@+id/nav_activity_additem"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/addItem" />
+        <!-- The Profile Button in the drawer-->
+        <item
+            android:id="@+id/nav_activity_profile"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/profile" />
+        <!-- The Settings Button in the drawer-->
+        <item
+            android:id="@+id/nav_activity_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/settings" />
+        <!-- The Sign Out Button in the drawer-->
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/fourth_layout" />
+    </group>
+</menu>

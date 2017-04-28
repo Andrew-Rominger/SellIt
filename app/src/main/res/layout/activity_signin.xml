@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Image view for logo, currently don't have one developed. Uses a weight of 1 to determine the
+    height.-->
+    <ImageView
+        android:id="@+id/logoImg"
+        android:labelFor="@+id/logoImg"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:contentDescription="@string/desc"
+        app:srcCompat="?android:attr/alertDialogIcon" />
+
+    <!-- Edit Text box for the user's sign in name, username.-->
+    <EditText
+        android:id="@+id/signInName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/signInName"
+        android:hint="@string/userName" />
+
+    <!-- Edit Text box for the user's password-->
+    <EditText
+        android:id="@+id/signInPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:labelFor="@+id/signInPassword"
+        android:hint="@string/password" />
+
+    <!-- Spacing for the app's visual appeals, in between the password box to the bottom sign in button-->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Uses this horizontal, linear layout to keep the button width at a constant ratio on any device-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Takes a weight of 1 in the linear layout, for the left side of the button-->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- The button has a weight of 6, setting it's width in the layout. Also used to navigate to
+        the home page-->
+        <Button
+            android:id="@+id/signInBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:layout_gravity="center" android:text="@string/signIn" />
+
+        <!-- Takes a weight of 1 in the linear layout, for the right side of the button-->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Button to transition to the "Create Account" screen, underneath the sign in button. Shown as
+    text-->
+    <Button
+        android:id="@+id/toCreateAccBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/create_one"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+</LinearLayout>

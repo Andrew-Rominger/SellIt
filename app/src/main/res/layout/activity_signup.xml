@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Spacer for the text boxes and the top of the screen, having a weight of .2 of the screen-->
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"/>
+
+    <!-- Edit Text Box for the user's username, for their account-->
+    <EditText
+        android:id="@+id/UserNameBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/UserNameBox"
+        android:hint="@string/userName" />
+
+    <!-- Edit Text Box for the user's email, for their account-->
+    <EditText
+        android:id="@+id/EmailBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:labelFor="@+id/EmailBox"
+        android:hint="@string/email" />
+
+    <!-- Edit Text Box for the user's password, for their account-->
+    <EditText
+        android:id="@+id/PasswordBox"
+        android:labelFor="@+id/PasswordBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/password" />
+
+    <!-- Space between the password Edit Text and continue button, taking a weight of 1-->
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <!-- Uses this horizontal, linear layout to keep the button width at a constant ratio on any device-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Takes a weight of 1 in the linear layout, for the left side of the button-->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- The button has a weight of 6, setting it's width in the layout. Also used to navigate to
+        the home screen-->
+        <Button
+            android:id="@+id/ContinueBtn"
+            android:layout_width="0dp"
+            android:layout_weight="6"
+            android:layout_height="wrap_content"
+            android:text="@string/continueBtn" />
+
+        <!-- Takes a weight of 1 in the linear layout, for the right side of the button-->
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Button used to navigate to the sign in page-->
+    <Button
+        android:id="@+id/toSignInBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sign_in"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+</LinearLayout>

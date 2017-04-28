@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Horizontal Linear Layout to center the First Name text box-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the Frist Name Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Text Box for the user's First Name-->
+        <EditText
+            android:id="@+id/firstNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:labelFor="@+id/firstNameInput"
+            android:inputType="textPersonName"
+            android:text="@string/firstName"
+            android:layout_weight="0" />
+
+        <!-- Space on the rightof the First Name Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- Horizontal Linear Layout to center the Last Name text Box-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the Last Name Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Text Box for the user's Last Name-->
+        <EditText
+            android:id="@+id/lastNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:labelFor="@+id/lastNameInput"
+            android:text="@string/lastName" />
+
+        <!-- Space on the right of the Last Name Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the Email Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Text Box for the user's Email-->
+        <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:labelFor="@+id/emailInput"
+            android:inputType="textEmailAddress"
+            android:text="@string/email" />
+
+        <!-- Space on the right of the Email Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Horizontal Linear Layout to center the Password Text Box-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the Password Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Edit Text Box for the user's password-->
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:labelFor="@+id/passwordInput"
+            android:inputType="textPassword"
+            android:text="@string/password" />
+
+        <!-- Space on the right of the Password Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Horizontal Linear Layout to center the City Text Box-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the City Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Edit Text Box for the user's city-->
+        <EditText
+            android:id="@+id/cityInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:labelFor="@+id/cityInput"
+            android:inputType="textPersonName"
+            android:text="@string/city" />
+
+        <!-- Space on the right of the City Text Box-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Horizontal Linear Layout to center the State Text View with the List View along with the
+    spacers-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the State Text View-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Horizontal Linear Layout to align the State Text View with its list view-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight=".6">
+
+            <!-- Text View that says the word "State" next to the state list view-->
+            <TextView
+                android:id="@+id/stateLab"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/state"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <!-- List Viewer to edit the state the user is in-->
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="170dp"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+        <!-- Space on the right of the list viewer-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Horizontal Linear Layout to center the save and sign out button-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Space on the left of the button-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Vertical Linear Layout to align the Save button to the sign out button-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Space above the save button to align it to the sign out button-->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- Image Button to save the data the user has changed-->
+            <ImageButton
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dialog"
+                android:layout_weight="1"
+                android:contentDescription="@string/desc" />
+
+            <!-- Spacer underneath the save button to align it to the sign out button-->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <!-- Sign out button which brings the user back to the sign in page-->
+        <Button
+            android:id="@+id/signOutBtn"
+            android:layout_width="153dp"
+            android:layout_height="50dp"
+            android:text="@string/signOut" />
+
+        <!-- Space to the right of the button-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <!-- Attributions button that navigates to the attributions page-->
+    <Button
+        android:id="@+id/attributionsBtn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/attributions" />
+</LinearLayout>
