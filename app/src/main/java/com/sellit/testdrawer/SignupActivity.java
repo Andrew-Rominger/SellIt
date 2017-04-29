@@ -101,8 +101,10 @@ public class SignupActivity extends AppCompatActivity {
                             String name = "";
                             String phoneNumber = "";
 
+                            String city = cityInput.getText().toString();
+                            Log.e(TAG, city);
                             UserInfo info = new UserInfo(UID, userName, name, phoneNumber,
-                                    emailInput.getText().toString(), stateSpinner.toString(), cityInput.toString());
+                                    emailInput.getText().toString(), stateSpinner.getSelectedItem().toString(), city);
 
                             mDatabase.child("userInfo").child(UID).setValue(info);
                             startActivity(new Intent(SignupActivity.this, HomeActivity.class));
