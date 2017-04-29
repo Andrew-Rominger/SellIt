@@ -34,6 +34,7 @@ import java.util.Set;
 
 public class ListAllFragment extends Fragment
 {
+
     RecyclerView recView;
     String TAG = ListAllFragment.class.getSimpleName();
 
