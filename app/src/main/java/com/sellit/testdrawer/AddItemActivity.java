@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -229,15 +231,42 @@ public class AddItemActivity extends AppCompatActivity {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;
         myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), bmOptions);
-        Matrix matrix = new Matrix();
-        matrix.setRotate(90);
-
-        if(myBitmap != null) {
-            final Bitmap result = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight(), matrix, true);
-            final Bitmap scaledResult = Bitmap.createScaledBitmap(result, result.getWidth() / 2, result.getHeight() / 2, true);
-            imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
+        myBitmap = Bitmap.createScaledBitmap(myBitmap, myBitmap.getWidth() / 2, myBitmap.getHeight() / 2, true);
+        ExifInterface ei = null;
+        try {
+            ei = new ExifInterface(pictureImagePath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
+        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_UNDEFINED);
+
+        switch (orientation) {
+
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                myBitmap = rotateImage(myBitmap, 90);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                myBitmap = rotateImage(myBitmap, 180);
+                break;
+
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                myBitmap = rotateImage(myBitmap, 270);
+                break;
+
+            case ExifInterface.ORIENTATION_NORMAL:
+
+            default:
+                break;
+        }
+
+
+            imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
+
+
+        }
+
 
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
