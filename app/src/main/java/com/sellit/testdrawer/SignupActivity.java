@@ -126,7 +126,4 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
-
-    //Function for writing the inputed data in the Firebase
-
 }
