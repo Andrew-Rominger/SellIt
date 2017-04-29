@@ -15,7 +15,7 @@
             android:title="@string/addItem" />
         <!-- The Donation Button in the drawer-->
         <item
-            android:id="@+id/nav_activity_donations"
+            android:id="@+id/nav_activity_donate"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/donations" />
         <!-- The Settings Button in the drawer-->

@@ -40,8 +40,12 @@
             android:label="@string/signOut">
         </activity>
 
+        <activity
+            android:name=".DonateActivity"
+            android:label="@string/donate">
+        </activity>
 
         <activity android:name=".AddItemActivity"
-            android:label="@string/addItem" />
+        android:label="@string/addItem" />
     </application>
 </manifest>

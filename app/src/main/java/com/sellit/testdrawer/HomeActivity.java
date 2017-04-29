@@ -81,11 +81,9 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new SecondFragment())
                     .commit();
-        } else if (id == R.id.nav_activity_donations) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new Donate())
-                    .commit();
+        } else if (id == R.id.nav_activity_donate) {
+            Intent intent = new Intent(this, DonateActivity.class);
+            startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
