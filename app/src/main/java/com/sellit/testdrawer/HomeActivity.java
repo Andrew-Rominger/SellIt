@@ -99,7 +99,8 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new ListAllFragment())
                     .commit();
-        }else if (id == R.id.nav_sign_out) {
+        }else if (id == R.id.nav_sign_out)
+        {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FourthFragment())
@@ -107,9 +108,13 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_activity_additem) {
             startActivity(new Intent(HomeActivity.this, AddItemActivity.class));
         } else if (id == R.id.nav_activity_profile) {
+            ProfileFragment pf = new ProfileFragment();
+            Bundle b = new Bundle();
+            b.putString("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+            pf.setArguments(b);
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new ProfileFragment())
+                            , pf)
                     .commit();
         } else if (id == R.id.nav_activity_donate) {
             fragmentManager.beginTransaction()

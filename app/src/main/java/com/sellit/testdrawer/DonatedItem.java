@@ -8,7 +8,7 @@ public class DonatedItem extends Item
 {
     public DonatedItem(String name, String price, String description, int rating, String uid) {
 
-        super(name, "0", description, rating, uid);
+        super(name, "0", description, rating, uid, false);
 
     }
 

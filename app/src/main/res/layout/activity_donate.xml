@@ -34,3 +34,4 @@
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_menu_cross" />
     </LinearLayout>
+</LinearLayout>

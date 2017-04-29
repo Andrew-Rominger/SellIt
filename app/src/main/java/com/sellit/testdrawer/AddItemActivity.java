@@ -121,7 +121,7 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+                Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
                 String key = mRef.push().getKey();
                 Map<String, Object> childUpdates = new HashMap<>();

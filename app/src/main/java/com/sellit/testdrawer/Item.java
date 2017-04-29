@@ -24,13 +24,16 @@ public class Item
     public Drawable image;
     public String uid;
     public String Key;
+    public boolean isSold;
 
-    public Item(String name, String price, String description, int rating, String uid) {
+    public Item(String name, String price, String description, int rating, String uid, boolean isSold) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.rating = rating;
         this.uid = uid;
+        this.isSold = isSold;
+
     }
 
     public Item() {
@@ -44,6 +47,7 @@ public class Item
         result.put("price", price);
         result.put("description", description);
         result.put("rating", rating);
+        result.put("isSold",isSold);
         return result;
     }
 

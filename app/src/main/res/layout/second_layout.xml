@@ -38,16 +38,15 @@
         android:labelFor="@+id/emailInput"
         android:inputType="textEmailAddress"
         android:hint="@string/email" />
-
     <EditText
-        android:id="@+id/passwordInput"
+        android:id="@+id/phoneInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:labelFor="@+id/passwordInput" />
+        android:layout_gravity="center"
+        android:labelFor="@+id/emailInput"
+        android:inputType="phone"
+        android:hint="Phone" />
 
     <EditText
         android:id="@+id/cityInput"
@@ -103,10 +102,10 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/signOutBtn"
+            android:id="@+id/saveButton"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:text="@string/signOut" />
+            android:text="Save" />
 
     </LinearLayout>
     <Space

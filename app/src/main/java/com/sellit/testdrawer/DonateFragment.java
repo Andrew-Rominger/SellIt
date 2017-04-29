@@ -46,20 +46,6 @@ public class DonateFragment extends Fragment {
     {
         myView = inflater.inflate(R.layout.activity_donate,container,false);
 
-        TabHost host = (TabHost)myView.findViewById(R.id.tabHost);
-        host.setup();
-
-        //Incoming Tab
-        TabHost.TabSpec spec = host.newTabSpec("Incoming");
-        spec.setContent(R.id.Incoming);
-        spec.setIndicator("Incoming");
-        host.addTab(spec);
-
-        //Outgoing Tab
-        spec = host.newTabSpec("Outgoing");
-        spec.setContent(R.id.Outgoing);
-        spec.setIndicator("Outgoing");
-        host.addTab(spec);
 
         return myView;
     }
@@ -67,7 +53,6 @@ public class DonateFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-        recView= (RecyclerView) view.findViewById(R.id.donationIncomingRecView);
 
     }
 

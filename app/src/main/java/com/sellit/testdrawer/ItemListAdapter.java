@@ -1,5 +1,6 @@
 package com.sellit.testdrawer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -22,13 +23,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     ArrayList<Item> itemsList;
     Context context;
     LayoutInflater inflater;
+    Activity A;
     String TAG = ItemListAdapter.class.getSimpleName();
-    public ItemListAdapter(ArrayList<Item> items, Context c)
+    public ItemListAdapter(ArrayList<Item> items, Activity A)
     {
         Log.d(TAG, "Adapter Constructor");
         itemsList = items;
-        this.context = c;
-        inflater = LayoutInflater.from(c);
+        this.A = A;
+        this.context = this.A.getApplicationContext();
+        inflater = LayoutInflater.from(context);
     }
 
     @Override

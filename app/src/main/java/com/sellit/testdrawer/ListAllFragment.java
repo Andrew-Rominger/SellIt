@@ -75,7 +75,7 @@ public class ListAllFragment extends Fragment
                 }
                 Set keys = items.keySet();
                 Object[] itemList = items.values().toArray();
-                final ItemListAdapter adapter = new ItemListAdapter(listItems,ListAllFragment.this.getActivity());
+                final ItemListAdapter adapter = new ItemListAdapter(listItems, getActivity());
                 for(int i = 0; i < itemList.length;i++)
                 {
                     Object item = itemList[i];
