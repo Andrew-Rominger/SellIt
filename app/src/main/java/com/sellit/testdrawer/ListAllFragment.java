@@ -25,9 +25,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -83,12 +81,13 @@ public class ListAllFragment extends Fragment
                     String Key = (String) keys.toArray()[i];
                     HashMap<String, Object> itemMap = (HashMap<String, Object>) item;
                     final Item itemTemp = new Item();
-                    itemTemp.Description = (String) itemMap.remove("description");
-                    Log.d(Item.TAG, "Description: " + itemTemp.Description );
-                    itemTemp.Name = (String) itemMap.remove("name");
-                    itemTemp.Price = (String) itemMap.remove("price");
-                    itemTemp.Rating = ((Long) itemMap.remove("rating")).intValue();
-                    itemTemp.UID = (String) itemMap.remove("uid");
+                    itemTemp.description = (String) itemMap.remove("description");
+                    Log.d(Item.TAG, "description: " + itemTemp.description);
+                    itemTemp.Key = Key;
+                    itemTemp.name = (String) itemMap.remove("name");
+                    itemTemp.price = (String) itemMap.remove("price");
+                    itemTemp.rating = ((Long) itemMap.remove("rating")).intValue();
+                    itemTemp.uid = (String) itemMap.remove("uid");
                     String path = "gs://nationals-master.appspot.com";
                     StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
                     Log.d(TAG, path);

@@ -1,25 +1,17 @@
 package com.sellit.testdrawer;
 
-import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Andrew on 4/29/2017.
@@ -58,17 +50,16 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         return itemsList.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         View itemView;
         ImageView itemImage;
         TextView Title;
         TextView Description;
         TextView Price;
-
+        FrameLayout wrapper;
+        Item item;
         public ItemViewHolder(View itemView)
         {
-
             super(itemView);
             Log.d(TAG, "ItemViewHolder Contructor");
             this.itemView = itemView;
@@ -76,15 +67,26 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             Title = (TextView) itemView.findViewById(R.id.IIL_ItemName);
             Description = (TextView) itemView.findViewById(R.id.IIL_ItemDescription);
             Price = (TextView) itemView.findViewById(R.id.IIL_ItemPrice);
+            wrapper = (FrameLayout) itemView.findViewById(R.id.IIL_Wrapper);
+            wrapper.setOnClickListener(this);
         }
 
         public void setData(Item item)
         {
+            this.item = item;
             Log.d(TAG, "setData");
-            Title.setText(item.Name);
-            Description.setText(item.Description);
-            Price.setText(item.Price);
+            Title.setText(item.name);
+            Description.setText(item.description);
+            Price.setText(item.price);
             itemImage.setImageDrawable(item.image);
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent i = new Intent(v.getContext(), ItemDetail.class);
+            i.putExtra("Key", item.Key);
+            v.getContext().startActivity(i);
         }
     }
 }

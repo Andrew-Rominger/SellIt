@@ -18,6 +18,7 @@ public class UserInfo
     public String PhoneNumber;
     public String Name;
     public String UID;
+    public String Email;
     public String TAG = UserInfo.class.getSimpleName();
     private DatabaseReference mDatabase;
     public UserInfo()
@@ -25,12 +26,13 @@ public class UserInfo
 
     }
 
-    public UserInfo(String UUID, String UserName, String Name, String PhoneNumber)
+    public UserInfo(String UUID, String UserName, String Name, String PhoneNumber, String Email)
     {
         this.UID = UUID;
         this.UserName = UserName;
         this.Name = Name;
         this.PhoneNumber = PhoneNumber;
+        this.Email = Email;
     }
     public UserInfo(String UUID)
     {

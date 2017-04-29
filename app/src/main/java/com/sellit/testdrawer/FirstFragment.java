@@ -45,7 +45,7 @@ public class FirstFragment extends Fragment {
 
     }
 
-    Item thingIWantToSell = new Item("Thing I want to sell", "Good Description", "Electronics", 3, 80);
+    Item thingIWantToSell = new Item("Thing I want to sell", "Good description", "Electronics", 3, 80);
 
     public void thing () {
         

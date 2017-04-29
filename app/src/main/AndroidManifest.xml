@@ -2,11 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sellit.testdrawer">
 
-    <!--Restricts app to only devices with cameras-->
-    <uses-feature android:name="android.hardware.camera"
+    <!-- Restricts app to only devices with cameras -->
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,14 +24,13 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SignInActivity"
             android:label="@string/signIn">
@@ -38,43 +40,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SignupActivity"
-            android:label="@string/signUp">
-        </activity>
-
+            android:label="@string/signUp"></activity>
         <activity
             android:name=".FourthLayout"
-            android:label="@string/signOut">
-        </activity>
-
+            android:label="@string/signOut"></activity>
         <activity
             android:name=".DonateFragment"
-            android:label="@string/donate">
-        </activity>
-
+            android:label="@string/donate"></activity>
         <activity
             android:name=".AttributesActivity"
-            android:label="@string/attributions">
-        </activity>
-
+            android:label="@string/attributions"></activity>
         <activity
             android:name=".GoalsActivity"
-            android:label="@string/goals">
-        </activity>
-
+            android:label="@string/goals"></activity>
         <activity
             android:name=".ProfileFragment"
-            android:label="@string/profile">
-        </activity>
-
+            android:label="@string/profile"></activity>
         <activity
             android:name=".SecondActivity"
-            android:label="@string/profile">
-        </activity>
-
-        <activity android:name=".AddItemActivity"
-        android:label="@string/addItem" />
+            android:label="@string/profile"></activity>
+        <activity
+            android:name=".AddItemActivity"
+            android:label="@string/addItem" />
+        <activity android:name=".ItemDetail"></activity>
     </application>
+
 </manifest>
