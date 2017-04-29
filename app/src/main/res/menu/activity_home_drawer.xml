@@ -18,11 +18,11 @@
             android:id="@+id/nav_activity_donate"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/donations" />
-        <!-- The Settings Button in the drawer-->
+        <!-- The Profile Button in the drawer-->
         <item
-            android:id="@+id/nav_activity_settings"
+            android:id="@+id/nav_activity_profile"
             android:icon="@drawable/ic_menu_settings"
-            android:title="@string/settings" />
+            android:title="@string/profile" />
         <!-- The Sign Out Button in the drawer-->
         <item
             android:id="@+id/nav_sign_out"

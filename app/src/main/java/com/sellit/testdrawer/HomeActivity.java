@@ -108,14 +108,16 @@ public class HomeActivity extends AppCompatActivity
                     .commit();
         } else if (id == R.id.nav_activity_additem) {
             startActivity(new Intent(HomeActivity.this, AddItemActivity.class));
-        } else if (id == R.id.nav_activity_settings) {
+        } else if (id == R.id.nav_activity_profile) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new SecondFragment())
+                            , new ProfileFragment())
                     .commit();
         } else if (id == R.id.nav_activity_donate) {
-            Intent intent = new Intent(this, DonateActivity.class);
-            startActivity(intent);
+            fragmentManager.beginTransaction()
+            .replace(R.id.content_frame
+                    , new DonateFragment())
+                    .commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

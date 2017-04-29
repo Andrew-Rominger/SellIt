@@ -50,8 +50,28 @@
         </activity>
 
         <activity
-            android:name=".DonateActivity"
+            android:name=".DonateFragment"
             android:label="@string/donate">
+        </activity>
+
+        <activity
+            android:name=".AttributesActivity"
+            android:label="@string/attributions">
+        </activity>
+
+        <activity
+            android:name=".GoalsActivity"
+            android:label="@string/goals">
+        </activity>
+
+        <activity
+            android:name=".ProfileFragment"
+            android:label="@string/profile">
+        </activity>
+
+        <activity
+            android:name=".SecondActivity"
+            android:label="@string/profile">
         </activity>
 
         <activity android:name=".AddItemActivity"
