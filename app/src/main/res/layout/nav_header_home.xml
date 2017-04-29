@@ -12,7 +12,7 @@
     android:paddingTop="25dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <!-- Profile Picture-->
+    <!-- User Picture-->
     <ImageView
         android:id="@+id/profileBtn"
         android:layout_width="wrap_content"

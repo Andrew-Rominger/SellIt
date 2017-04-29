@@ -1,8 +1,13 @@
 <component name="libraryTable">
   <library name="firebase-iid-10.2.4">
     <CLASSES>
+<<<<<<< Updated upstream:.idea/libraries/firebase_iid_10_2_4.xml
       <root url="file://$USER_HOME$/.android/build-cache/e041a6ebd55993e925b6d824803e0dfcd172dc22/output/res" />
       <root url="jar://$USER_HOME$/.android/build-cache/e041a6ebd55993e925b6d824803e0dfcd172dc22/output/jars/classes.jar!/" />
+=======
+      <root url="jar://$USER_HOME$/.android/build-cache/e0e16a325115e008997a1c164b407f6dafb28085/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/e0e16a325115e008997a1c164b407f6dafb28085/output/res" />
+>>>>>>> Stashed changes:.idea/libraries/play_services_basement_10_0_1.xml
     </CLASSES>
     <JAVADOC />
     <SOURCES />

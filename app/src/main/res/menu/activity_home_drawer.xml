@@ -13,11 +13,11 @@
             android:id="@+id/nav_activity_additem"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/addItem" />
-        <!-- The Profile Button in the drawer-->
+        <!-- The Donation Button in the drawer-->
         <item
-            android:id="@+id/nav_activity_profile"
+            android:id="@+id/nav_activity_donations"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/profile" />
+            android:title="@string/donations" />
         <!-- The Settings Button in the drawer-->
         <item
             android:id="@+id/nav_activity_settings"

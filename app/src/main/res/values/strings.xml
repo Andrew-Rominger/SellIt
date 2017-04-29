@@ -58,6 +58,7 @@
     <string name="settings">Settings</string>
     <string name="profile">Profile</string>
     <string name="spinnerPrompt">Condition</string>
+    <string name="donations">Donations</string>
     <string-array name="spinner">
         <item>Thing</item>
         <item>Electronics</item>
