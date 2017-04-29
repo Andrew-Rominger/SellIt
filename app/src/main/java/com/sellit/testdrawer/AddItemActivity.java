@@ -62,6 +62,7 @@ public class AddItemActivity extends AppCompatActivity {
     EditText itemDescription;
     RatingBar itemCondition;
     ImageView imagePic;
+    Spinner stateSpinner;
 
     String TAG = AddItemActivity.class.getSimpleName();
     String[] permsRequested = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -81,6 +82,10 @@ public class AddItemActivity extends AppCompatActivity {
         itemDescription = (EditText) findViewById(R.id.itemDescriptionInput);
         itemCondition = (RatingBar) findViewById(R.id.itemCondition);
         imagePic = (ImageView) findViewById(R.id.photoImg);
+        String[] states = getResources().getStringArray(R.array.states);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
+        stateSpinner = (Spinner) findViewById(R.id.addItemStateSpinner);
+        stateSpinner.setAdapter(adapter);
 
         //In current version, sets the spinner on screen to the elements in the strings file at: res -> values -> strings.xml
         String myString = "Item Category";
