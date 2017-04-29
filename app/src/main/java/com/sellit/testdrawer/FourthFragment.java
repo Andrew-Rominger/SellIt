@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * Created by 2524904 on 4/5/2017.
  */
@@ -26,6 +29,7 @@ public class FourthFragment extends Fragment{
         setUp();
         return myView;
     }
+    
     private void setUp(){
         toHome = (Button) myView.findViewById(R.id.noBtn);
         toHome.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +49,7 @@ public class FourthFragment extends Fragment{
     }
     private void toHome(){
         Intent intent = new Intent(getActivity(), HomeActivity.class);
+        FirebaseAuth.getInstance().signOut();
         startActivity(intent);
     }
 

@@ -70,7 +70,7 @@ public class AddItemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dispatchTakePictureIntent();
             }
-        }
+        });
     }
     //Intent to start camera
     static final int REQUEST_IMAGE_CAPTURE = 1;

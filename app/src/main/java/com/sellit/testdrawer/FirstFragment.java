@@ -46,10 +46,7 @@ public class FirstFragment extends Fragment{
 
     }
 
-    Item thingIWantToSell = new Item("Thing I want to sell", "Good Description", "Electronics", 3, 80);
 
-    public void thing
-    Toast.makeText(SignInActivity.this, Name.thingIWantToSell, Toast.LENGTH_LONG).show();
 
 
 }

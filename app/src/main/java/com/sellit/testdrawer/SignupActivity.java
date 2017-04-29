@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
     private String TAG = SignupActivity.class.getSimpleName();
     //References to the Firebase
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
 
         //Firebase Initialization
         mAuth = FirebaseAuth.getInstance();
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         //On Click Listener for the Continue Button
         toBase = (Button) findViewById(R.id.ContinueBtn);
         toBase.setOnClickListener(new View.OnClickListener() {
@@ -82,19 +83,18 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            String s = usernameInput.getText().toString();
+                            Log.d(TAG, "Username: " + s);
                             FirebaseUser user = mAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(usernameInput.getText().toString())
-                                    .build();
-                            user.updateProfile(profileUpdates)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                Log.d(TAG, "User profile updated.");
-                                            }
-                                        }
-                                    });
+                            String UID = user.getUid();
+                            String userName = usernameInput.getText().toString();
+                            String name = "";
+                            String phoneNumber = "";
+
+                            UserInfo info = new UserInfo(UID, userName, name, phoneNumber);
+
+                            mDatabase.child("userInfo").child(UID).setValue(info);
+                            startActivity(new Intent(SignupActivity.this, HomeActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -105,7 +105,7 @@ public class SignupActivity extends AppCompatActivity {
                         // ...
                     }
                 });
-        startActivity(new Intent(SignupActivity.this, HomeActivity.class));
+
     }
     //Function for clicking the Continue button and navigating to the Home Screen
 
