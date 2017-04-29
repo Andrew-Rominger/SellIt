@@ -9,11 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 
 public class SecondActivity extends AppCompatActivity{
 
-    EditText firstNameInput;
     Button toSignIn;
     Button attributesBtn;
     ImageButton saveBtn;
@@ -26,8 +25,6 @@ public class SecondActivity extends AppCompatActivity{
     EditText email;
     EditText password;
     EditText city;
-
-    String entName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,5 +105,4 @@ public class SecondActivity extends AppCompatActivity{
     private void saveData(){
 
     }
-
 }
