@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class AddItem extends Fragment{
+public class AddItem extends Fragment {
 
     View myView;
     Button submit;
