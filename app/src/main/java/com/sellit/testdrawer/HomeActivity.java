@@ -1,6 +1,8 @@
 package com.sellit.testdrawer;
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -52,6 +54,8 @@ public class HomeActivity extends AppCompatActivity
         sideBarEmail = (TextView) navHeader.findViewById(R.id.emailSideBar);
         user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+
+
         ValueEventListener listener = new ValueEventListener()
         {
             @Override
@@ -69,6 +73,10 @@ public class HomeActivity extends AppCompatActivity
         };
         mRef.child("userInfo").child(user.getUid()).addListenerForSingleValueEvent(listener);
         sideBarEmail.setText(user.getEmail());
+        FragmentManager FM = getFragmentManager();
+        FragmentTransaction transaction = FM.beginTransaction();
+        transaction.replace(R.id.content_frame, new ListAllFragment());
+        transaction.commit();
     }
 
     @Override
@@ -91,7 +99,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_first_layout) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new FirstFragment())
+                            , new ListAllFragment())
                     .commit();
         }else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()
