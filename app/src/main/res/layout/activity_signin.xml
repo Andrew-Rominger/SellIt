@@ -20,14 +20,14 @@
 
     <!-- Edit Text box for the user's sign in name, username.-->
     <EditText
-        android:id="@+id/signInName"
+        android:id="@+id/signInEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPersonName"
         android:labelFor="@+id/signInName"
-        android:hint="@string/userName" />
+        android:hint="@string/email" />
 
     <!-- Edit Text box for the user's password-->
     <EditText
