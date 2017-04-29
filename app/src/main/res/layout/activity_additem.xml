@@ -5,83 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
         <EditText
             android:id="@+id/itemNameInput"
             android:labelFor="@+id/itemNameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/name" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
 
         <EditText
             android:id="@+id/itemPriceInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:ems="10"
             android:hint="@string/price"
             android:inputType="number|numberDecimal"
             android:labelFor="@+id/itemPriceInput" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
 
         <EditText
             android:id="@+id/itemDescriptionInput"
             android:labelFor="@+id/itemDescriptionInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/desc" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,28 +70,11 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5" />
-
         <RatingBar
             android:id="@+id/itemCondition"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Space
-            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5" />
-
-    </LinearLayout>
+            android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -3,11 +3,13 @@ package com.sellit.testdrawer;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,15 +41,33 @@ public class DonateFragment extends Fragment {
     View myView;
     String TAG = DonateFragment.class.getSimpleName();
 
+    FloatingActionButton createDonation;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
     {
         myView = inflater.inflate(R.layout.activity_donate,container,false);
-
+        newDonation();
+        createDonation = (FloatingActionButton) myView.findViewById(R.id.createDonation);
 
         return myView;
     }
+    private void newDonation(){
+        createDonation = (FloatingActionButton) myView.findViewById(R.id.createDonation);
+        createDonation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toNewDonation();
+            }
+        });
+    }
+    private void toNewDonation(){
+        Intent intent = new Intent(getActivity(), DonationActivity.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)

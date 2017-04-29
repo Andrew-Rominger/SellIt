@@ -95,6 +95,14 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".DonationActivity"
+            android:label="@string/newDonation"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+        </activity>
+
+
         <activity android:name=".AddItemActivity"
         android:label="@string/addItem"
             android:configChanges="orientation"

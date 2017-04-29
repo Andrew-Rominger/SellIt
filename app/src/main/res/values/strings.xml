@@ -60,6 +60,7 @@
     <string name="spinnerPrompt">Condition</string>
     <string name="donations">Donations</string>
     <string name="goals">Goals</string>
+    <string name="newDonation">New Donation</string>
     <string-array name="spinner">
         <item>Thing</item>
         <item>Electronics</item>
