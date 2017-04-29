@@ -1,7 +1,9 @@
 package com.sellit.testdrawer;
 
+import android.app.FragmentManager;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,5 +81,13 @@ public class ItemDetail extends AppCompatActivity
             }
         };
         itemRef.addListenerForSingleValueEvent(listener);
+        FragmentManager FM = getFragmentManager();
+        android.app.FragmentTransaction transaction = FM.beginTransaction();
+        Bundle args = new Bundle();
+        args.putString("postID", Key);
+        CommentFragment CF = new CommentFragment();
+        CF.setArguments(args);
+        transaction.replace(R.id.commentFramentHolder,CF);
+        transaction.commit();
     }
 }
