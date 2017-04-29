@@ -12,8 +12,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -26,9 +28,21 @@ import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -46,6 +60,8 @@ public class AddItemActivity extends AppCompatActivity {
     EditText itemDescription;
     RatingBar itemCondition;
     ImageView imagePic;
+
+    String TAG = AddItemActivity.class.getSimpleName();
     String[] permsRequested = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
@@ -94,6 +110,39 @@ public class AddItemActivity extends AppCompatActivity {
                 // This was before checking for permissions to read and write. Call later. openBackCamera(1, AddItemActivity.this);
             }
         });
+        submitItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                String key = mRef.push().getKey();
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put("/items/"+key, item.toMap());
+                mRef.updateChildren(childUpdates);
+                Log.d(TAG, "ID: " + key);
+                StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/items/" + key + ".png");
+                ByteArrayOutputStream OS = new ByteArrayOutputStream();
+                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
+                byte[] data = OS.toByteArray();
+                UploadTask UT = sRef.putBytes(data);
+                UT.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Could not save Image. " + e.getLocalizedMessage());
+                    }
+                });
+                UT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(AddItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(AddItemActivity.this, HomeActivity.class));
+                    }
+                });
+
+            }
+        });
+
     }
     //Requests to use the write to storage, and read to storage. Checks to see if the request has already been made.
 
@@ -208,7 +257,7 @@ public class AddItemActivity extends AppCompatActivity {
         pictureImagePath = storageDir.getAbsolutePath() + "/" + imageFileName;
         Log.i("path3", pictureImagePath);
         File file = new File(pictureImagePath);
-        Uri outputFileUri = Uri.fromFile(file);
+        Uri outputFileUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", file);
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
         startActivityForResult(cameraIntent, numCode);
