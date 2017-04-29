@@ -3,12 +3,13 @@ package com.sellit.testdrawer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,12 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by 2524904 on 4/5/2017.
@@ -35,6 +32,9 @@ public class SignupActivity extends AppCompatActivity {
     EditText usernameInput;
     EditText passwordInput;
     EditText emailInput;
+    EditText cityInput;
+    Spinner stateSpinner;
+
 
     private String TAG = SignupActivity.class.getSimpleName();
     //References to the Firebase
@@ -46,10 +46,15 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        //Variables for the inputed text
+        //Variables for the inputted text
         usernameInput = (EditText) findViewById(R.id.UserNameBox);
         passwordInput = (EditText) findViewById(R.id.PasswordBox);
         emailInput = (EditText) findViewById(R.id.EmailBox);
+        cityInput = (EditText) findViewById(R.id.cityInputSignUp);
+        String[] states = getResources().getStringArray(R.array.states);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
+        stateSpinner = (Spinner) findViewById(R.id.spinnerSignUp);
+        stateSpinner.setAdapter(adapter);
 
         //Firebase Initialization
         mAuth = FirebaseAuth.getInstance();
@@ -96,7 +101,8 @@ public class SignupActivity extends AppCompatActivity {
                             String name = "";
                             String phoneNumber = "";
 
-                            UserInfo info = new UserInfo(UID, userName, name, phoneNumber, emailInput.getText().toString());
+                            UserInfo info = new UserInfo(UID, userName, name, phoneNumber,
+                                    emailInput.getText().toString(), stateSpinner.toString(), cityInput.toString());
 
                             mDatabase.child("userInfo").child(UID).setValue(info);
                             startActivity(new Intent(SignupActivity.this, HomeActivity.class));
