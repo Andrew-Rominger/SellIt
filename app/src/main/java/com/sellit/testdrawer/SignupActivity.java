@@ -3,6 +3,7 @@ package com.sellit.testdrawer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -70,6 +71,10 @@ public class SignupActivity extends AppCompatActivity {
                 toSignInBtn();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SignInActivity.class));
     }
 
 

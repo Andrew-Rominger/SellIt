@@ -43,12 +43,12 @@
 
         <EditText
             android:id="@+id/itemPriceInput"
-            android:labelFor="@+id/itemPriceInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number"
-            android:hint="@string/price" />
+            android:hint="@string/price"
+            android:inputType="number|numberDecimal"
+            android:labelFor="@+id/itemPriceInput" />
 
         <Space
             android:layout_width="0dp"
@@ -163,8 +163,7 @@
             android:id="@+id/photoImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/desc"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            android:contentDescription="@string/desc" />
 
     </LinearLayout>
 

@@ -66,6 +66,10 @@ public class SignInActivity extends AppCompatActivity {
         //Firebase Initialization
         mAuth = FirebaseAuth.getInstance();
     }
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SignupActivity.class));
+    }
 
     //Function to retrieve information from the Firebase and to check if the correct information is submitted
     private void signInUser()
