@@ -261,12 +261,25 @@ public class AddItemActivity extends AppCompatActivity {
                 break;
         }
 
-
+            myBitmap = getResizedBitmap(myBitmap, 300);
             imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
 
 
         }
+    public static Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
 
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
