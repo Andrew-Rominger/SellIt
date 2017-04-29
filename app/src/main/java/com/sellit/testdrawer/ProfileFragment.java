@@ -37,6 +37,12 @@ public class ProfileFragment extends Fragment {
         spec.setIndicator("Sold");
         host.addTab(spec);
 
+        //Donations Tab
+        spec = host.newTabSpec("Donations");
+        spec.setContent(R.id.donations);
+        spec.setIndicator("Donations");
+        host.addTab(spec);
+
         toSettings = (FloatingActionButton) myView.findViewById(R.id.toSettings);
 
         return myView;
