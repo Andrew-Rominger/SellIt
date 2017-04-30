@@ -9,6 +9,15 @@
         android:layout_height="0dp"
         android:layout_weight=".25" />
 
+    <TextView
+        android:id="@+id/userNameInputSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:text="@string/username"
+        android:labelFor="@+id/lastNameInput" />
+
     <EditText
         android:id="@+id/firstNameInput"
         android:layout_width="wrap_content"
@@ -33,11 +42,12 @@
         android:id="@+id/emailInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_gravity="center"
-        android:labelFor="@+id/emailInput"
+        android:ems="10"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:hint="@string/email" />
+        android:labelFor="@+id/emailInput" />
+
     <EditText
         android:id="@+id/phoneInput"
         android:layout_width="wrap_content"
@@ -80,34 +90,13 @@
             android:layout_weight=".5"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/saveBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dialog"
-                android:contentDescription="@string/desc" />
-
-        </LinearLayout>
-
         <Button
             android:id="@+id/saveButton"
             android:layout_width="153dp"
             android:layout_height="50dp"
-            android:text="Save" />
+            android:text="Save"
+            android:layout_gravity="center_horizontal"/>
 
-    </LinearLayout>
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"

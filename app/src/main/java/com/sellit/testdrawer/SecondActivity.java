@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,7 +24,6 @@ import java.util.Map;
 
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     Button saveButton;
     Button addGoal;
     Spinner stateSpinner;
@@ -32,6 +32,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     EditText email;
     EditText city;
     EditText phone;
+    TextView username;
 
     String TAG = SecondActivity.class.getSimpleName();
 
@@ -39,6 +40,9 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
+
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+
         String[] states = getResources().getStringArray(R.array.states);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
         stateSpinner = (Spinner) findViewById(R.id.spinnerSettings);
@@ -51,11 +55,19 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         addGoal = (Button) findViewById(R.id.addGoalBtn);
         saveButton = (Button) findViewById(R.id.saveButton);
         phone = (EditText) findViewById(R.id.phoneInput);
+        username = (TextView) findViewById(R.id.userNameInputSettings);
+
         saveButton.setOnClickListener(this);
+
         FirebaseUser FBUser = FirebaseAuth.getInstance().getCurrentUser();
         email.setText(FBUser.getEmail());
+        city.setText(mRef.child("userInfo").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("city").toString());
+        stateSpinner.setPrompt(mRef.child("userInfo").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("state").toString());
 
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+
         String UUID = FBUser.getUid();
         ValueEventListener listener = new ValueEventListener()
         {
@@ -77,10 +89,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         mRef.child("userInfo").child(UUID).addListenerForSingleValueEvent(listener);
     }
 
-    //Save inputted data to firebase
-    private void saveData(){
-
-    }
 
     @Override
     public void onClick(View v)
@@ -93,6 +101,9 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         newData.firstName = firstName.getText().toString();
         newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         newData.state = stateSpinner.getSelectedItem().toString();
+        newData.Email = email.getText().toString();
+        newData.TAG = "UserInfo";
+        newData.UserName = username.getText().toString();
 
         DatabaseReference dRef = FirebaseDatabase.getInstance().getReference();
 

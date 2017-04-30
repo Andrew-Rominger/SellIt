@@ -43,6 +43,8 @@ public class UserInfo
         result.put("lastName", lastName);
         result.put("firstName", firstName);
         result.put("phoneNumber", phoneNumber);
+        result.put("email", Email);
+        result.put("TAG", "UserInfo");
         return result;
     }
 
