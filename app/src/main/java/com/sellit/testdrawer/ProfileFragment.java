@@ -42,7 +42,6 @@ public class ProfileFragment extends Fragment {
     FloatingActionButton toSettings;
 
     TextView firstName;
-    TextView lastName;
     TextView state;
     TextView city;
 
@@ -66,8 +65,7 @@ public class ProfileFragment extends Fragment {
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
                 firstName.setText(userPage.firstName);
-                lastName.setText(userPage.lastName);
-                city.setText(userPage.city);
+                city.setText(userPage.city + ", ");
                 state.setText(userPage.state);
                 setupRecView();
 
@@ -266,7 +264,6 @@ public class ProfileFragment extends Fragment {
         city = (TextView) view.findViewById(R.id.profileCity);
         state = (TextView) view.findViewById(R.id.profileState);
         firstName = (TextView) view.findViewById(R.id.profileFirstName);
-        lastName = (TextView) view.findViewById(R.id.profileLastName);
         recView = (RecyclerView) view.findViewById(R.id.profileRecView);
         recVewSold = (RecyclerView) view.findViewById(R.id.profileRecViewSold);
 

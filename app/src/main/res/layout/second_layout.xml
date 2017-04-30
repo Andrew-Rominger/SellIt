@@ -14,9 +14,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:ems="10"
         android:text="@string/username"
-        android:labelFor="@+id/lastNameInput" />
+        android:labelFor="@+id/lastNameInput"
+        />
 
     <EditText
         android:id="@+id/firstNameInput"
@@ -27,16 +27,6 @@
         android:hint="@string/firstName"
         android:inputType="textPersonName"
         android:labelFor="@+id/firstNameInput" />
-
-    <EditText
-        android:id="@+id/lastNameInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:hint="@string/lastName"
-        android:inputType="textPersonName"
-        android:labelFor="@+id/lastNameInput" />
 
     <EditText
         android:id="@+id/emailInput"
@@ -82,7 +72,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"></Spinner>
+            android:layout_weight="1">
+        </Spinner>
 
         <Space
             android:layout_width="0dp"

@@ -35,7 +35,6 @@ public class SignupActivity extends AppCompatActivity {
     EditText cityInput;
     EditText phoneInput;
     EditText firstName;
-    EditText lastName;
     Spinner stateSpinner;
 
 
@@ -56,7 +55,6 @@ public class SignupActivity extends AppCompatActivity {
         cityInput = (EditText) findViewById(R.id.cityInputSignUp);
         phoneInput = (EditText) findViewById(R.id.phoneInput);
         firstName = (EditText) findViewById(R.id.firstName);
-        lastName = (EditText) findViewById(R.id.lastName);
         String[] states = getResources().getStringArray(R.array.states);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
         stateSpinner = (Spinner) findViewById(R.id.spinnerSignUp);
@@ -116,7 +114,7 @@ public class SignupActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignupActivity.this, "Authentication failed.",
+                            Toast.makeText(SignupActivity.this, "Authentication failed, user already exists.",
                                     Toast.LENGTH_SHORT).show();
                         }
 

@@ -5,60 +5,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_gravity="center_horizontal">
+        android:text="name"
+        android:id="@+id/profileFirstName"
+        android:layout_gravity="center_horizontal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:id="@+id/profileFirstName"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="  "/>
-
-        <TextView
-            android:id="@+id/profileLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name"
-            />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:text="City"
+        android:id="@+id/profileCity"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="City"
-            android:id="@+id/profileCity"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=", "/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="State"
-            android:id="@+id/profileState"/>
-    </LinearLayout>
-
-    <ImageView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:text="State"
+        android:id="@+id/profileState"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@mipmap/ic_launcher" />
+        android:padding="8dp"
+        android:text="@string/userGoal"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/goal_progress_user"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progress="50"/>
 
     <TabHost
         android:id="@+id/hostTab"

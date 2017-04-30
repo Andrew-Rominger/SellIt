@@ -44,7 +44,7 @@ public class ItemDetail extends AppCompatActivity
         Key = getIntent().getStringExtra("Key");
         Log.d(TAG, "Key: " + Key);
         dRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference itemRef = dRef.child("items/"+Key);
+        DatabaseReference itemRef = dRef.child("items/"+ Key);
 
         ValueEventListener listener = new ValueEventListener()
         {

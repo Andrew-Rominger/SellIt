@@ -32,7 +32,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     EditText email;
     EditText city;
     EditText phone;
-    TextView username;
+    TextView Username;
 
     String TAG = SecondActivity.class.getSimpleName();
 
@@ -55,7 +55,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         addGoal = (Button) findViewById(R.id.addGoalBtn);
         saveButton = (Button) findViewById(R.id.saveButton);
         phone = (EditText) findViewById(R.id.phoneInput);
-        username = (TextView) findViewById(R.id.userNameInputSettings);
+        Username = (TextView) findViewById(R.id.userNameInputSettings);
 
         saveButton.setOnClickListener(this);
 
@@ -66,8 +66,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         stateSpinner.setPrompt(mRef.child("userInfo").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("state").toString());
 
-        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-
         String UUID = FBUser.getUid();
         ValueEventListener listener = new ValueEventListener()
         {
@@ -77,8 +75,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 UserInfo u = dataSnapshot.getValue(UserInfo.class);
                 firstName.setText(u.firstName);
                 city.setText(u.city);
-                lastName.setText(u.lastName);
                 phone.setText(u.phoneNumber);
+                Username.setText(u.userName);
             }
 
             @Override
@@ -89,7 +87,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         mRef.child("userInfo").child(UUID).addListenerForSingleValueEvent(listener);
     }
 
-
     @Override
     public void onClick(View v)
     {
@@ -97,13 +94,12 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         UserInfo newData = new UserInfo();
         newData.city = city.getText().toString();
         newData.phoneNumber = phone.getText().toString();
-        newData.lastName = lastName.getText().toString();
         newData.firstName = firstName.getText().toString();
         newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         newData.state = stateSpinner.getSelectedItem().toString();
-        newData.Email = email.getText().toString();
+        newData.email = email.getText().toString();
         newData.TAG = "UserInfo";
-        newData.UserName = username.getText().toString();
+        newData.userName = Username.getText().toString();
 
         DatabaseReference dRef = FirebaseDatabase.getInstance().getReference();
 
