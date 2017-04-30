@@ -33,6 +33,9 @@ public class SignupActivity extends AppCompatActivity {
     EditText passwordInput;
     EditText emailInput;
     EditText cityInput;
+    EditText phoneInput;
+    EditText firstName;
+    EditText lastName;
     Spinner stateSpinner;
 
 
@@ -51,6 +54,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordInput = (EditText) findViewById(R.id.PasswordBox);
         emailInput = (EditText) findViewById(R.id.EmailBox);
         cityInput = (EditText) findViewById(R.id.cityInputSignUp);
+        phoneInput = (EditText) findViewById(R.id.phoneInput);
+        firstName = (EditText) findViewById(R.id.firstName);
+        lastName = (EditText) findViewById(R.id.lastName);
         String[] states = getResources().getStringArray(R.array.states);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
         stateSpinner = (Spinner) findViewById(R.id.spinnerSignUp);
@@ -98,9 +104,8 @@ public class SignupActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             String UID = user.getUid();
                             String userName = usernameInput.getText().toString();
-                            String name = "";
-                            String phoneNumber = "";
-
+                            String name = firstName.getText().toString();
+                            String phoneNumber = phoneInput.getText().toString();
                             String city = cityInput.getText().toString();
                             Log.e(TAG, city);
                             UserInfo info = new UserInfo(UID, userName, name, phoneNumber,

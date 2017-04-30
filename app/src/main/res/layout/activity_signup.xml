@@ -21,17 +21,6 @@
         android:labelFor="@+id/UserNameBox"
         android:hint="@string/userName" />
 
-    <!-- Edit Text Box for the user's email, for their account-->
-    <EditText
-        android:id="@+id/EmailBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:labelFor="@+id/EmailBox"
-        android:hint="@string/email" />
-
     <!-- Edit Text Box for the user's password, for their account-->
     <EditText
         android:id="@+id/PasswordBox"
@@ -43,13 +32,55 @@
         android:inputType="textPassword"
         android:hint="@string/password" />
 
+    <!-- Edit Text Box for the user's email, for their account-->
+    <EditText
+        android:id="@+id/EmailBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:labelFor="@+id/EmailBox"
+        android:hint="@string/email" />
+
+    <EditText
+        android:id="@+id/phoneInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:labelFor="@+id/emailInput"
+        android:inputType="phone"
+        android:hint="Phone" />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:labelFor="@+id/firstName"
+        android:inputType="textPersonName"
+        android:hint="@string/firstName" />
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="@string/lastName"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/lastName" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cityInputSignUp"
         android:hint="City"
         android:ems="10"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:inputType="textPersonName" />
 
     <Spinner
         android:id="@+id/spinnerSignUp"
