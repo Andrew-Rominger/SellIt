@@ -11,7 +11,6 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -49,57 +48,54 @@ import java.util.Map;
 
 public class DonationActivity extends AppCompatActivity {
 
-    Boolean isMarshmallowOrHigher;
-
-    Button donationTakePictureBtn;
-    Button donationSubmitBtn;
-
-    EditText donationNameInput;
-    EditText donationDescriptionInput;
-
-    ImageView imagePic;
-
-    RatingBar donationCondition;
-
-    Spinner donationCategorySpinner;
-
+    Button submitItem;
+    Button takePhoto;
+    Spinner itemType;
     String[] categories;
-    String pictureImagePath;
-
-    int itemType_position;
-
     String selected, spinner_item;
+    Boolean isMarshmallowOrHigher;
+    Bitmap myBitmap;
+    int itemType_position;
+    String pictureImagePath;
+    EditText itemName;
+    EditText itemDescription;
+    RatingBar itemCondition;
+    ImageView imagePic;
+    Spinner stateSpinner;
 
     String TAG = AddItemActivity.class.getSimpleName();
     String[] permsRequested = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
 
-
-    Bitmap myBitmap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donations);
+        setContentView(R.layout.activity_additem);
 
+        //Initialize variables on activity
         isMarshmallowOrHigher = isMarshmallowOrHigher();
-        donationTakePictureBtn = (Button) findViewById(R.id.donationPicBtn);
-        donationSubmitBtn = (Button) findViewById(R.id.donationSubmitBtn);
-        donationNameInput = (EditText) findViewById(R.id.donationNameInput);
-        donationDescriptionInput = (EditText) findViewById(R.id.donationDescriptionInput);
+        submitItem = (Button) findViewById(R.id.submitBtn);
+        takePhoto = (Button) findViewById(R.id.takePicBtn);
+        itemType = (Spinner) findViewById(R.id.itemType);
+        itemName = (EditText) findViewById(R.id.itemNameInput);
+        itemDescription = (EditText) findViewById(R.id.itemDescriptionInput);
+        itemCondition = (RatingBar) findViewById(R.id.itemCondition);
         imagePic = (ImageView) findViewById(R.id.photoImg);
-        donationCondition = (RatingBar) findViewById(R.id.donationCondition);
-        donationCategorySpinner = (Spinner) findViewById(R.id.donationType);
+        String[] states = getResources().getStringArray(R.array.states);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
+        stateSpinner = (Spinner) findViewById(R.id.addItemStateSpinner);
+        stateSpinner.setAdapter(adapter);
 
+        //In current version, sets the spinner on screen to the elements in the strings file at: res -> values -> strings.xml
         String myString = "Item Category";
         categories = getResources().getStringArray(R.array.spinner);
         ArrayAdapter<String> ad = new ArrayAdapter<String>(DonationActivity.this, android.R.layout.simple_spinner_dropdown_item, categories);
         itemType_position = ad.getPosition(myString);
-        donationCategorySpinner.setAdapter(ad);
+        itemType.setAdapter(ad);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        donationCategorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        itemType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                selected = donationCategorySpinner.getSelectedItem().toString();
+                selected = itemType.getSelectedItem().toString();
                 if (!selected.equals("Thing"))
                     spinner_item = selected;
                 System.out.println(selected);
@@ -110,18 +106,20 @@ public class DonationActivity extends AppCompatActivity {
 
             }
         });
-        donationTakePictureBtn.setOnClickListener(new View.OnClickListener() {
+
+        //On button start camera
+        takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkUserPerms();
                 // This was before checking for permissions to read and write. Call later. openBackCamera(1, AddItemActivity.this);
             }
         });
-        donationSubmitBtn.setOnClickListener(new View.OnClickListener() {
+        submitItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Item item = new Item(donationNameInput.getText().toString(), "Donated", donationDescriptionInput.getText().toString(), (int) donationCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+                Item item = new Item(itemName.getText().toString(), "Donated", itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
                 String key = mRef.push().getKey();
                 Map<String, Object> childUpdates = new HashMap<>();
@@ -143,18 +141,20 @@ public class DonationActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(DonationActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(DonationActivity.this, DonateFragment.class));
+                        startActivity(new Intent(DonationActivity.this, HomeActivity.class));
                     }
                 });
 
             }
         });
-    }
 
+    }
+    //Requests to use the write to storage, and read to storage. Checks to see if the request has already been made.
 
     private boolean isMarshmallowOrHigher () {
         return(Build.VERSION.SDK_INT>Build.VERSION_CODES.LOLLIPOP_MR1);
     }
+
 
     private void checkUserPerms () {
         int permissionCheck = ContextCompat.checkSelfPermission(DonationActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -188,6 +188,7 @@ public class DonationActivity extends AppCompatActivity {
         }
     }
 
+    //On event permission is allowed.
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -213,6 +214,8 @@ public class DonationActivity extends AppCompatActivity {
         }
     }
 
+
+    //Intent to start camera
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
@@ -221,6 +224,7 @@ public class DonationActivity extends AppCompatActivity {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -265,7 +269,6 @@ public class DonationActivity extends AppCompatActivity {
 
 
     }
-
     public static Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();

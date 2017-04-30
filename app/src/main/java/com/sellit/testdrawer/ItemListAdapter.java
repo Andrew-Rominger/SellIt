@@ -88,6 +88,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         public void onClick(View v)
         {
             Intent i = new Intent(v.getContext(), ItemDetail.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.putExtra("Key", item.Key);
             v.getContext().startActivity(i);
         }
