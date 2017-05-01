@@ -4,18 +4,18 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/itemNameInput"
-        android:labelFor="@+id/itemNameInput"
+        android:id="@+id/donationNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="textPersonName"
-        android:hint="@string/name" />
+        android:labelFor="@+id/donationNameInput" />
 
     <EditText
-        android:id="@+id/itemDescriptionInput"
-        android:labelFor="@+id/itemDescriptionInput"
+        android:id="@+id/donationDescriptionInput"
+        android:labelFor="@+id/donationDescriptionInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -23,46 +23,11 @@
         android:inputType="textPersonName"
         android:hint="@string/desc" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
-        <EditText
-            android:id="@+id/itemCity"
-            android:layout_width="156dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="City"
-            android:inputType="textPersonName"
-            android:labelFor="@+id/itemDescriptionInput"
-            android:layout_weight="0.07" />
-
-        <Spinner
-            android:id="@+id/addItemStateSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.28"
-            android:layout_gravity="center">
-        </Spinner>
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-
-    </LinearLayout>
-
     <RatingBar
-        android:id="@+id/itemCondition"
+        android:id="@+id/donationCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,19 +37,19 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
         <Spinner
-            android:id="@+id/itemType"
+            android:id="@+id/donationType"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:spinnerMode="dialog"/>
+            android:spinnerMode="dialog" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
     </LinearLayout>
 
@@ -96,10 +61,10 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
         <Button
-            android:id="@+id/takePicBtn"
+            android:id="@+id/donationPicBtn"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,14 +74,14 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/photoImg"
@@ -137,7 +102,7 @@
             android:layout_weight=".5"/>
 
         <Button
-            android:id="@+id/submitBtn"
+            android:id="@+id/donationSubmitBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

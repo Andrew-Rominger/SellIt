@@ -48,54 +48,57 @@ import java.util.Map;
 
 public class DonationActivity extends AppCompatActivity {
 
-    Button submitItem;
-    Button takePhoto;
-    Spinner itemType;
+    Button donationSubmitBtn;
+    Button donationPicBtn;
+
+    Spinner donationType;
+
     String[] categories;
     String selected, spinner_item;
-    Boolean isMarshmallowOrHigher;
-    Bitmap myBitmap;
-    int itemType_position;
     String pictureImagePath;
-    EditText itemName;
-    EditText itemDescription;
-    RatingBar itemCondition;
-    ImageView imagePic;
-    Spinner stateSpinner;
 
-    String TAG = AddItemActivity.class.getSimpleName();
+    Boolean isMarshmallowOrHigher;
+
+    Bitmap myBitmap;
+
+    int itemType_position;
+
+    EditText donationNameInput;
+    EditText donationDescriptionInput;
+    RatingBar donationCondition;
+
+    ImageView photoImg;
+
+    String TAG = DonationActivity.class.getSimpleName();
     String[] permsRequested = {android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_additem);
+        setContentView(R.layout.activity_donations);
 
         //Initialize variables on activity
         isMarshmallowOrHigher = isMarshmallowOrHigher();
-        submitItem = (Button) findViewById(R.id.submitBtn);
-        takePhoto = (Button) findViewById(R.id.takePicBtn);
-        itemType = (Spinner) findViewById(R.id.itemType);
-        itemName = (EditText) findViewById(R.id.itemNameInput);
-        itemDescription = (EditText) findViewById(R.id.itemDescriptionInput);
-        itemCondition = (RatingBar) findViewById(R.id.itemCondition);
-        imagePic = (ImageView) findViewById(R.id.photoImg);
-        String[] states = getResources().getStringArray(R.array.states);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
-        stateSpinner = (Spinner) findViewById(R.id.addItemStateSpinner);
-        stateSpinner.setAdapter(adapter);
+        donationSubmitBtn = (Button) findViewById(R.id.donationSubmitBtn);
+        donationPicBtn = (Button) findViewById(R.id.donationPicBtn);
+        donationType = (Spinner) findViewById(R.id.donationType);
+        donationNameInput = (EditText) findViewById(R.id.donationNameInput);
+        donationDescriptionInput = (EditText) findViewById(R.id.donationDescriptionInput);
+        donationCondition = (RatingBar) findViewById(R.id.donationCondition);
+        photoImg = (ImageView) findViewById(R.id.photoImg);
+        donationType = (Spinner) findViewById(R.id.donationType);
 
         //In current version, sets the spinner on screen to the elements in the strings file at: res -> values -> strings.xml
         String myString = "Item Category";
         categories = getResources().getStringArray(R.array.spinner);
         ArrayAdapter<String> ad = new ArrayAdapter<String>(DonationActivity.this, android.R.layout.simple_spinner_dropdown_item, categories);
         itemType_position = ad.getPosition(myString);
-        itemType.setAdapter(ad);
+        donationType.setAdapter(ad);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        itemType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        donationType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                selected = itemType.getSelectedItem().toString();
+                selected = donationType.getSelectedItem().toString();
                 if (!selected.equals("Thing"))
                     spinner_item = selected;
                 System.out.println(selected);
@@ -108,25 +111,25 @@ public class DonationActivity extends AppCompatActivity {
         });
 
         //On button start camera
-        takePhoto.setOnClickListener(new View.OnClickListener() {
+        donationPicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkUserPerms();
                 // This was before checking for permissions to read and write. Call later. openBackCamera(1, AddItemActivity.this);
             }
         });
-        submitItem.setOnClickListener(new View.OnClickListener() {
+        donationSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Item item = new Item(itemName.getText().toString(), "Donated", itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
+                Donation donation = new Donation(donationNameInput.getText().toString(), "Donated", donationDescriptionInput.getText().toString(), (int) donationCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
-                String key = mRef.push().getKey();
+                String donationKey = mRef.push().getKey();
                 Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/items/"+key, item.toMap());
+                childUpdates.put("/donations/"+donationKey, donation.donationToMap());
                 mRef.updateChildren(childUpdates);
-                Log.d(TAG, "ID: " + key);
-                StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/items/" + key + ".png");
+                Log.d(TAG, "ID: " + donationKey);
+                StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/donations/" + donationKey + ".png");
                 ByteArrayOutputStream OS = new ByteArrayOutputStream();
                 myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
                 byte[] data = OS.toByteArray();
@@ -141,7 +144,7 @@ public class DonationActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(DonationActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(DonationActivity.this, HomeActivity.class));
+                        startActivity(new Intent(DonationActivity.this, DonationActivity.class));
                     }
                 });
 
@@ -265,7 +268,7 @@ public class DonationActivity extends AppCompatActivity {
         }
 
         myBitmap = getResizedBitmap(myBitmap, 300);
-        imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
+        photoImg.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
 
 
     }

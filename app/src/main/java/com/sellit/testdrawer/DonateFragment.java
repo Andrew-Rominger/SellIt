@@ -2,6 +2,7 @@ package com.sellit.testdrawer;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -50,6 +51,12 @@ public class DonateFragment extends Fragment {
         myView = inflater.inflate(R.layout.activity_donate,container,false);
         newDonation();
         createDonation = (FloatingActionButton) myView.findViewById(R.id.createDonation);
+        FragmentManager fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.donationList
+                        , new ListDonationsFragment())
+                .commit();
 
         return myView;
     }
@@ -91,22 +98,22 @@ public class DonateFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                HashMap<String,Object> items = (HashMap<String, Object>) dataSnapshot.getValue();
-                if (items == null) {
+                HashMap<String,Object> donations = (HashMap<String, Object>) dataSnapshot.getValue();
+                if (donations == null) {
                     return;
                 }
-                Set keys = items.keySet();
-                Object[] itemList = items.values().toArray();
+                Set keys = donations.keySet();
+                Object[] donationList = donations.values().toArray();
                 final DonatedItemListAdapter adapter = new DonatedItemListAdapter(list,DonateFragment.this.getActivity());
-                for(int i = 0; i<itemList.length;i++){
-                    Object item = itemList[i];
+                for(int i = 0; i<donationList.length;i++){
+                    Object donation = donationList[i];
                     String Key = (String) keys.toArray()[i];
-                    HashMap<String,Object> itemMap = (HashMap<String, Object>) item;
+                    HashMap<String,Object> itemMap = (HashMap<String, Object>) donation;
                     final DonatedItem donatedItem = new DonatedItem();
-                    donatedItem.description = (String) itemMap.remove("description");
-                    donatedItem.Key = Key;
-                    donatedItem.name = (String) itemMap.remove("name");
-                    donatedItem.price = (String) itemMap.remove("price");
+                    donatedItem.donatedDescription = (String) itemMap.remove("description");
+                    donatedItem.donationKey = Key;
+                    donatedItem.donatedName = (String) itemMap.remove("name");
+                    donatedItem.donatedPrice = (String) itemMap.remove("price");
                     donatedItem.uid = (String) itemMap.remove("uid");
                     donatedItem.rating = ((Long)itemMap.remove("rating")).intValue();
                     String path = "gs://nationals-master.appspot.com";
@@ -183,28 +190,28 @@ public class DonateFragment extends Fragment {
             TextView Description;
             TextView Price;
             FrameLayout wrapper;
-            DonatedItem item;
+            DonatedItem donation;
             public DonatedItemViewHolder(View itemView) {
                 super(itemView);
                 Log.d(TAG, "ItemViewHolder Contructor");
                 this.itemView = itemView;
-                itemImage = (ImageView) itemView.findViewById(R.id.IIL_Thumbnail);
-                Title = (TextView) itemView.findViewById(R.id.IIL_ItemName);
-                Description = (TextView) itemView.findViewById(R.id.IIL_ItemDescription);
-                Price = (TextView) itemView.findViewById(R.id.IIL_ItemPrice);
-                wrapper = (FrameLayout) itemView.findViewById(R.id.IIL_Wrapper);
+                itemImage = (ImageView) itemView.findViewById(R.id.DI_Thumbnail);
+                Title = (TextView) itemView.findViewById(R.id.DI_ItemName);
+                Description = (TextView) itemView.findViewById(R.id.DI_ItemDescription);
+                Price = (TextView) itemView.findViewById(R.id.DI_ItemPrice);
+                wrapper = (FrameLayout) itemView.findViewById(R.id.DI_Wrapper);
                 wrapper.setOnClickListener(this);
 
             }
 
             public void setData(DonatedItem donatedItem)
             {
-                this.item = donatedItem;
+                this.donation = donatedItem;
                 Log.d(TAG, "setData");
-                Title.setText(item.name);
-                Description.setText(item.description);
-                Price.setText(item.price);
-                itemImage.setImageDrawable(item.image);
+                Title.setText(donation.donatedName);
+                Description.setText(donation.donatedDescription);
+                Price.setText(donation.donatedPrice);
+                itemImage.setImageDrawable(donation.image);
             }
 
             @Override
