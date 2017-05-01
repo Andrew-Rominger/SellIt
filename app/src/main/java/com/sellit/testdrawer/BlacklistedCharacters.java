@@ -6,9 +6,11 @@ package com.sellit.testdrawer;
 
 public class BlacklistedCharacters {
     String charList[];
+    Boolean isGood;
 
     private Boolean checkChar(String string) {
 
-        return ;
+        isGood = true;
+        return isGood;
     }
 }
