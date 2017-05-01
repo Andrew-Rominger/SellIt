@@ -144,7 +144,7 @@ public class DonationActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(DonationActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(DonationActivity.this, DonationActivity.class));
+                        startActivity(new Intent(DonationActivity.this, HomeActivity.class));
                     }
                 });
 
