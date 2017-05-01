@@ -3,9 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
-
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
@@ -15,8 +12,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
-        android:layout_alignParentTop="true"
-        />
+        android:layout_alignParentTop="true"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

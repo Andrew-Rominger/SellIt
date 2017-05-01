@@ -80,7 +80,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             Log.d(TAG, "setData");
             Title.setText(item.name);
             Description.setText(item.description);
-            Price.setText(item.price);
+            Price.setText("$"+ item.price);
             itemImage.setImageDrawable(item.image);
         }
 
