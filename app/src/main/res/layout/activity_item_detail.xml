@@ -2,157 +2,92 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemDetailParentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.sellit.testdrawer.ItemDetail">
 
     <ScrollView
-        android:layout_width="368dp"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="-3dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="368dp"
-            android:layout_height="495dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/itemNameDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Name"
+                android:textSize="24sp"
+                android:layout_margin="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/ID_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:hint="Location"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/ID_ItemPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="right"
+                    android:hint="Price"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ID_ItemDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:hint="Description"
+                android:layout_margin="8dp"/>
 
             <ImageView
-                android:id="@+id/ID_Image"
-                android:layout_width="120dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal" />
+                android:id="@+id/itemImageDetail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@android:color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp">
+                android:layout_weight=".5"
+                android:foregroundGravity="right"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".5"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/itemNameDetail"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:text="Item Name" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:text="Item Price" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:text="Item Condition" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:text="Item Description" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".5"
-                    android:foregroundGravity="right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/ID_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:hint="itemName" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/ID_ItemPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="65dp"
-                        android:hint="itemName" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/ID_"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:hint="itemName" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                    <TextView
-                        android:id="@+id/ID_ItemDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="64dp"
-                        android:hint="itemName" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@android:color/black" />
-
-                </LinearLayout>
             </LinearLayout>
+
 
             <FrameLayout
                 android:id="@+id/commentFramentHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp">
-            </FrameLayout>
+                android:layout_marginTop="4dp"></FrameLayout>
+
         </LinearLayout>
+
 
     </ScrollView>
 

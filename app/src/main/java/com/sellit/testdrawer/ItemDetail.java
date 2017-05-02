@@ -25,21 +25,23 @@ public class ItemDetail extends AppCompatActivity
     DatabaseReference dRef;
     Item item;
 
-    ImageView image;
     TextView Name;
     TextView Description;
     TextView Rating;
     TextView ItemPrice;
     TextView Location;
+    ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
+
+        image = (ImageView) findViewById(R.id.itemImageDetail);
         Name = (TextView) findViewById(R.id.itemNameDetail);
         Description = (TextView) findViewById(R.id.ID_ItemDescription);
         ItemPrice = (TextView) findViewById(R.id.ID_ItemPrice);
-        image = (ImageView) findViewById(R.id.ID_Image);
         Location = (TextView) findViewById(R.id.ID_location);
         Key = getIntent().getStringExtra("Key");
         Log.d(TAG, "Key: " + Key);
@@ -54,13 +56,13 @@ public class ItemDetail extends AppCompatActivity
                 item =  dataSnapshot.getValue(Item.class);
                 Name.setText(item.name);
                 Description.setText(item.description);
-                ItemPrice.setText(item.price);
+                ItemPrice.setText("$" + item.price);
                 DatabaseReference uRef = FirebaseDatabase.getInstance().getReference("userInfo");
                 ValueEventListener listener_user = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo u = dataSnapshot.getValue(UserInfo.class);
-                        Location.setText(u.city + ", " + u.state);
+                        Location.setText(u.city + ", " + u.state + "      ");
                     }
 
                     @Override
@@ -73,7 +75,7 @@ public class ItemDetail extends AppCompatActivity
                 String path = "gs://nationals-master.appspot.com";
                 StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
                 Log.d(TAG, path);
-                StorageReference sRef = storageReference.child("images/items/"+Key+".png");
+                final StorageReference sRef = storageReference.child("images/items/"+Key+".png");
                 sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>()
                 {
                    @Override
