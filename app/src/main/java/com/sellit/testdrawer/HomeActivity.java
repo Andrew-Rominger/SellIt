@@ -105,9 +105,7 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new FourthFragment())
                     .commit();
-        } else if (id == R.id.nav_activity_additem) {
-            startActivity(new Intent(HomeActivity.this, AddItemActivity.class));
-        } else if (id == R.id.nav_activity_profile) {
+        }else if (id == R.id.nav_activity_profile) {
             ProfileFragment pf = new ProfileFragment();
             Bundle b = new Bundle();
             b.putString("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());

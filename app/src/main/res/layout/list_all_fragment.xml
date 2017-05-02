@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.RecyclerView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listAllRecView">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".MainActivity"
+            tools:showIn="@layout/activity_donate">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listAllRecView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/createItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                app:fabSize="normal"
+                app:srcCompat="@drawable/ic_menu_cross" />
+        </RelativeLayout>
+    </FrameLayout>
 </LinearLayout>

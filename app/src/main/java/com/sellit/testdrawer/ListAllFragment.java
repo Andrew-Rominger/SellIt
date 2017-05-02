@@ -1,11 +1,13 @@
 package com.sellit.testdrawer;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,25 +34,41 @@ import java.util.Set;
  * Created by Andrewa on 4/29/2017.
  */
 
-public class ListAllFragment extends Fragment
-{
+public class ListAllFragment extends Fragment {
 
     RecyclerView recView;
     String TAG = ListAllFragment.class.getSimpleName();
+    View myView;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
-    {
-        return inflater.inflate(R.layout.list_all_fragment, container, false);
+    FloatingActionButton createItem;
+
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        myView = inflater.inflate(R.layout.list_all_fragment, container, false);
+        createItem = (FloatingActionButton) myView.findViewById(R.id.createItem);
+        newItem();
+        return myView;
     }
+    private void newItem(){
+        createItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toCreateItem();
+            }
+        });
+    }
+
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState)
-    {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         recView = (RecyclerView) view.findViewById(R.id.listAllRecView);
         setupRec(view);
         super.onViewCreated(view, savedInstanceState);
     }
-    private void setupRec(View view)
-    {
+
+    private void toCreateItem(){
+        Intent intent = new Intent(getActivity(), AddItemActivity.class);
+        startActivity(intent);
+    }
+    private void setupRec(View view) {
 
         getItems();
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
@@ -59,25 +77,21 @@ public class ListAllFragment extends Fragment
         recView.setItemAnimator(new DefaultItemAnimator());
 
     }
-    public void getItems()
-    {
+
+    public void getItems() {
         final ArrayList<Item> listItems = new ArrayList<>();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
-        mRef.child("items").addValueEventListener(new ValueEventListener()
-        {
+        mRef.child("items").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 HashMap<String, Object> items = (HashMap<String, Object>) dataSnapshot.getValue();
-                if(items==null)
-                {
+                if (items == null) {
                     return;
                 }
                 Set keys = items.keySet();
                 Object[] itemList = items.values().toArray();
                 final ItemListAdapter adapter = new ItemListAdapter(listItems, getActivity());
-                for(int i = 0; i < itemList.length;i++)
-                {
+                for (int i = 0; i < itemList.length; i++) {
                     Object item = itemList[i];
                     String Key = (String) keys.toArray()[i];
                     HashMap<String, Object> itemMap = (HashMap<String, Object>) item;
@@ -92,11 +106,10 @@ public class ListAllFragment extends Fragment
                     String path = "gs://nationals-master.appspot.com";
                     StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
                     Log.d(TAG, path);
-                    StorageReference sRef = storageReference.child("images/items/"+Key+".png");
+                    StorageReference sRef = storageReference.child("images/items/" + Key + ".png");
                     sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
-                        public void onSuccess(byte[] bytes)
-                        {
+                        public void onSuccess(byte[] bytes) {
                             Log.d(TAG, "Num Bytes: " + bytes.length);
                             itemTemp.image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
                             listItems.add(itemTemp);

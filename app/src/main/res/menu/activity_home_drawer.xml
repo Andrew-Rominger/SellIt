@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_home"
             android:title="@string/first_layout" />
         <!-- The Add Item Button in the drawer-->
-        <item
-            android:id="@+id/nav_activity_additem"
-            android:icon="@drawable/ic_menu_cross"
-            android:title="@string/addItem" />
         <!-- The Donation Button in the drawer-->
         <item
             android:id="@+id/nav_activity_donate"
