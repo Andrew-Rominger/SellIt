@@ -30,9 +30,9 @@ public class HomeActivity extends AppCompatActivity
     TextView sideBarUsername;
     TextView sideBarEmail;
     String TAG = HomeActivity.class.getSimpleName();
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,11 +56,9 @@ public class HomeActivity extends AppCompatActivity
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
 
-        ValueEventListener listener = new ValueEventListener()
-        {
+        ValueEventListener listener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 User u = dataSnapshot.getValue(User.class);
                 sideBarUsername.setText(u.UserName);
 
@@ -84,6 +82,13 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else {
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame
+                            , new FourthFragment())
+                    .commit();
+
         }
     }
 
@@ -99,13 +104,12 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , new ListAllFragment())
                     .commit();
-        }else if (id == R.id.nav_sign_out)
-        {
+        } else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FourthFragment())
                     .commit();
-        }else if (id == R.id.nav_activity_profile) {
+        } else if (id == R.id.nav_activity_profile) {
             ProfileFragment pf = new ProfileFragment();
             Bundle b = new Bundle();
             b.putString("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -116,8 +120,8 @@ public class HomeActivity extends AppCompatActivity
                     .commit();
         } else if (id == R.id.nav_activity_donate) {
             fragmentManager.beginTransaction()
-            .replace(R.id.content_frame
-                    , new DonateFragment())
+                    .replace(R.id.content_frame
+                            , new DonateFragment())
                     .commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
