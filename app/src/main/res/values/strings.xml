@@ -6,6 +6,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="change_photo">Change Photo</string>
+    <string name="save_changes">Save Changes</string>
     <string name="first_layout">Home</string>
     <string name="second_layout">Settings</string>
     <string name="third_layout">Donate</string>
