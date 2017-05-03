@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Item Name"
-                android:textSize="24sp"
+                android:textSize="28sp"
                 android:layout_margin="8dp"/>
 
             <LinearLayout
@@ -36,7 +36,7 @@
                     android:id="@+id/ID_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:hint="Location"/>
                 <Space
                     android:layout_width="0dp"
@@ -47,7 +47,7 @@
                     android:id="@+id/ID_ItemPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_gravity="right"
                     android:hint="Price"/>
 
@@ -57,7 +57,7 @@
                 android:id="@+id/ID_ItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:hint="Description"
                 android:layout_margin="8dp"/>
 

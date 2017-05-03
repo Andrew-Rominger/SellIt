@@ -236,7 +236,7 @@ public class AddItemActivity extends AppCompatActivity {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;
         myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath(), bmOptions);
-        myBitmap = Bitmap.createScaledBitmap(myBitmap, myBitmap.getWidth() / 2, myBitmap.getHeight() / 2, true);
+        myBitmap = Bitmap.createScaledBitmap(myBitmap, myBitmap.getWidth(), myBitmap.getHeight(), true);
         ExifInterface ei = null;
         try {
             ei = new ExifInterface(pictureImagePath);

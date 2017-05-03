@@ -62,7 +62,7 @@ public class ItemDetail extends AppCompatActivity
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo u = dataSnapshot.getValue(UserInfo.class);
-                        Location.setText(u.city + ", " + u.state + "      ");
+                        Location.setText(u.city + ", " + u.state);
                     }
 
                     @Override
