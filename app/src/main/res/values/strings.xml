@@ -64,7 +64,7 @@
     <string name="goals">Goals</string>
     <string name="newDonation">New Donation</string>
     <string name="username">Username</string>
-    <string name="userGoal">User\'s Current Goal</string>
+    <string name="userGoal">User\'s Current Goal:</string>
     <string-array name="spinner">
         <item>Thing</item>
         <item>Electronics</item>

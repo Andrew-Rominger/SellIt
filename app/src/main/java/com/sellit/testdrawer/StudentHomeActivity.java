@@ -13,50 +13,51 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.auth.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomeActivity extends AppCompatActivity
+public class StudentHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    FirebaseUser user;
+    FirebaseUser student;
     TextView sideBarUsername;
     TextView sideBarEmail;
-    String TAG = HomeActivity.class.getSimpleName();
+    String TAG = StudentHomeActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_student_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.student_drawer);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.student_nav);
         navigationView.setNavigationItemSelectedListener(this);
 
         View navHeader = navigationView.getHeaderView(0);
 
-        sideBarUsername = (TextView) navHeader.findViewById(R.id.userNameSidebar);
+        sideBarUsername = (TextView) navHeader.findViewById(R.id.fullNameSidebar);
         sideBarEmail = (TextView) navHeader.findViewById(R.id.emailSideBar);
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        student = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
 
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserInfo u = dataSnapshot.getValue(UserInfo.class);
-                sideBarUsername.setText(u.userName);
+                Student s = dataSnapshot.getValue(Student.class);
+                sideBarUsername.setText(s.Name);
 
             }
 
@@ -65,11 +66,11 @@ public class HomeActivity extends AppCompatActivity
 
             }
         };
-        mRef.child("userInfo").child(user.getUid()).addListenerForSingleValueEvent(listener);
-        sideBarEmail.setText(user.getEmail());
+        mRef.child("studentInfo").child(student.getUid()).addListenerForSingleValueEvent(listener);
+        sideBarEmail.setText(student.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new ListAllFragment());
+        transaction.replace(R.id.content_frame, new ListDonationsFragment());
         transaction.commit();
     }
 
@@ -95,18 +96,18 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_my_donations) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new ListAllFragment())
+                            , new ListDonationsFragment())
                     .commit();
         } else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FourthFragment())
                     .commit();
-        } else if (id == R.id.nav_activity_profile) {
-            ProfileFragment pf = new ProfileFragment();
+        } else if (id == R.id.nav_my_profile) {
+            StudentProfileFragment pf = new StudentProfileFragment();
             Bundle b = new Bundle();
             b.putString("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
             pf.setArguments(b);
@@ -114,13 +115,13 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.content_frame
                             , pf)
                     .commit();
-        } else if (id == R.id.nav_activity_donate) {
+        } else if (id == R.id.nav_notifications) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new DonateFragment())
+                            , new StudentNotifications())
                     .commit();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.student_drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
