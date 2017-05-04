@@ -266,7 +266,7 @@ public class AddItemActivity extends AppCompatActivity {
                 break;
         }
 
-            myBitmap = getResizedBitmap(myBitmap, 300);
+            myBitmap = getResizedBitmap(myBitmap, 800); //Change the 800 to change img compression ammount
             imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
 
 
