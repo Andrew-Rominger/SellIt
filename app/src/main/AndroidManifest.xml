@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -29,16 +30,16 @@
 
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
 
+        </activity>
         <activity
             android:name=".SignInActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,55 +49,57 @@
         </activity>
         <activity
             android:name=".SignupActivity"
-            android:label="@string/signUp"
             android:configChanges="orientation"
+            android:label="@string/signUp"
             android:screenOrientation="portrait">
-        </activity>
 
+        </activity>
         <activity
             android:name=".FourthLayout"
-            android:label="@string/signOut"
             android:configChanges="orientation"
+            android:label="@string/signOut"
             android:screenOrientation="portrait">
-        </activity>
 
+        </activity>
         <activity
             android:name=".AttributesActivity"
-            android:label="@string/attributions"
             android:configChanges="orientation"
+            android:label="@string/attributions"
             android:screenOrientation="portrait">
-        </activity>
 
+        </activity>
         <activity
             android:name=".GoalsActivity"
-            android:label="@string/goals"
             android:configChanges="orientation"
+            android:label="@string/goals"
             android:screenOrientation="portrait">
-        </activity>
 
+        </activity>
         <activity
             android:name=".SecondActivity"
-            android:label="@string/profile"
             android:configChanges="orientation"
+            android:label="@string/profile"
             android:screenOrientation="portrait">
-        </activity>
 
+        </activity>
         <activity
             android:name=".DonationActivity"
+            android:configChanges="orientation"
             android:label="@string/newDonation"
-            android:configChanges="orientation"
             android:screenOrientation="portrait">
+
         </activity>
-
-
-        <activity android:name=".AddItemActivity"
-        android:label="@string/addItem"
+        <activity
+            android:name=".AddItemActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ItemDetail"
+            android:label="@string/addItem"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ItemDetail"
+            android:configChanges="orientation"
             android:label="Item Detail"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

@@ -117,6 +117,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "582295476241-abuo8t8fuc95u9ou2l8jgc8c7s0mhhmo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sellit.testdrawer",
+            "certificate_hash": "c6f17a798362f424170036f0712b3873f6e9c5a2"
+          }
+        },
+        {
           "client_id": "582295476241-v17c3dbrb5bg6kj38a61kgghms5esbl7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
