@@ -95,6 +95,7 @@ public class ListAllFragment extends Fragment {
                     Object item = itemList[i];
                     String Key = (String) keys.toArray()[i];
                     HashMap<String, Object> itemMap = (HashMap<String, Object>) item;
+
                     final Item itemTemp = new Item();
                     itemTemp.description = (String) itemMap.remove("description");
                     Log.d(Item.TAG, "description: " + itemTemp.description);

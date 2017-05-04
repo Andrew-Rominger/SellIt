@@ -24,6 +24,7 @@ public class ItemDetail extends AppCompatActivity
     String TAG = ItemDetail.class.getSimpleName();
     DatabaseReference dRef;
     Item item;
+    UserInfo userInfo;
 
     TextView Name;
     TextView Description;
@@ -62,7 +63,9 @@ public class ItemDetail extends AppCompatActivity
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         UserInfo u = dataSnapshot.getValue(UserInfo.class);
-                        Location.setText(u.city + ", " + u.state);
+                        String locationText = u.city + ", " + u.state;
+
+                        Location.setText(locationText);
                     }
 
                     @Override
@@ -94,6 +97,7 @@ public class ItemDetail extends AppCompatActivity
                 Log.e(TAG, databaseError.getDetails());
             }
         };
+
         itemRef.addListenerForSingleValueEvent(listener);
         FragmentManager FM = getFragmentManager();
         android.app.FragmentTransaction transaction = FM.beginTransaction();
