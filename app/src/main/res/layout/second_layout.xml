@@ -39,16 +39,6 @@
         android:labelFor="@+id/emailInput" />
 
     <EditText
-        android:id="@+id/phoneInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:labelFor="@+id/emailInput"
-        android:inputType="phone"
-        android:hint="Phone" />
-
-    <EditText
         android:id="@+id/cityInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,20 +82,4 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
-    <Button
-        android:id="@+id/addGoalBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/goals"/>
-
-    <Button
-        android:id="@+id/attributionsBtn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/attributions" />
 </LinearLayout>

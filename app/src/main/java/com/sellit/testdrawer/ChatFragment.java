@@ -56,6 +56,8 @@ public class ChatFragment extends Fragment{
         addChat = (ImageView) view.findViewById(R.id.addChatButton);
         recView = (RecyclerView) view.findViewById(R.id.chatRecView);
 
+
+
         addChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

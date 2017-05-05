@@ -108,7 +108,7 @@ public class SignupActivity extends AppCompatActivity {
                             UserInfo info = new UserInfo(UID, userName, name,
                                     emailInput.getText().toString(), studentEmail, stateSpinner.getSelectedItem().toString(), city);
 
-                            mDatabase.child("studentInfo").child(UID).setValue(info);
+                            mDatabase.child("userInfo").child(UID).setValue(info);
                             startActivity(new Intent(SignupActivity.this, HomeActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
