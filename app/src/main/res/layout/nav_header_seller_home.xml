@@ -13,40 +13,17 @@
     android:paddingTop="25dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <!-- User Picture-->
-    <ImageView
-        android:id="@+id/profileBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/desc"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/profileBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- The user's username-->
-            <TextView
-                android:id="@+id/userNameSidebar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:text="@string/userNameVar"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <!-- The user's email-->
-            <TextView
-                android:id="@+id/emailSideBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/email" />
-        </LinearLayout>
+            android:contentDescription="@string/desc"
+            app:srcCompat="@android:drawable/sym_def_app_icon" />
 
         <Space
             android:layout_width="0dp"
@@ -74,6 +51,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buyer" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- The user's username-->
+            <TextView
+                android:id="@+id/userNameSidebar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:text="@string/userNameVar"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <!-- The user's email-->
+            <TextView
+                android:id="@+id/emailSideBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
