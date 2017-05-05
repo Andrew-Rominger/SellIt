@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +43,7 @@ public class ProfileFragment extends Fragment {
     FloatingActionButton toSettings;
 
     TextView firstName;
-    TextView state;
-    TextView city;
+    TextView location;
 
     String uid;
 
@@ -57,18 +57,22 @@ public class ProfileFragment extends Fragment {
         myView = inflater.inflate(R.layout.activity_profile,container,false);
         Bundle args = getArguments();
         uid = args.getString("uid");
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+
+        firstName = (TextView) myView.findViewById(R.id.profileFirstName);
+        location = (TextView) myView.findViewById(R.id.profileLocation);
+        recView = (RecyclerView) myView.findViewById(R.id.profileRecView);
+
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
         ValueEventListener listener = new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
-                firstName.setText(userPage.firstName);
-                city.setText(userPage.city + ", ");
-                state.setText(userPage.state);
-                setupRecView();
 
+                firstName.setText(userPage.fullName);
+                location.setText(userPage.city + ", " + userPage.state);
+                setupRecView();
             }
 
             @Override
@@ -78,26 +82,6 @@ public class ProfileFragment extends Fragment {
         };
         mRef.child("userInfo").child(uid).addListenerForSingleValueEvent(listener);
         settings();
-        TabHost host = (TabHost)myView.findViewById(R.id.hostTab);
-        host.setup();
-
-        //Items for Sale Tab
-        TabHost.TabSpec spec = host.newTabSpec("Selling");
-        spec.setContent(R.id.itemsForSale);
-        spec.setIndicator("Selling");
-        host.addTab(spec);
-
-        //Sold Items Tab
-        spec = host.newTabSpec("Sold");
-        spec.setContent(R.id.soldItems);
-        spec.setIndicator("Sold");
-        host.addTab(spec);
-
-        //Donations Tab
-        spec = host.newTabSpec("Donations");
-        spec.setContent(R.id.donations);
-        spec.setIndicator("Donations");
-        host.addTab(spec);
 
         toSettings = (FloatingActionButton) myView.findViewById(R.id.toSettings);
 
@@ -256,18 +240,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
-    {
-        city = (TextView) view.findViewById(R.id.profileCity);
-        state = (TextView) view.findViewById(R.id.profileState);
-        firstName = (TextView) view.findViewById(R.id.profileFirstName);
-        recView = (RecyclerView) view.findViewById(R.id.profileRecView);
-        recVewSold = (RecyclerView) view.findViewById(R.id.profileRecViewSold);
-
-
     }
 
     private void settings(){

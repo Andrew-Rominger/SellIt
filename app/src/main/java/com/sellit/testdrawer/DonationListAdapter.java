@@ -38,7 +38,7 @@ public class DonationListAdapter extends RecyclerView.Adapter<DonationListAdapte
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         Log.d(TAG, "OnCreateViewHolder");
-        return new DonationListAdapter.ItemViewHolder(inflater.inflate(R.layout.item_donated, parent, false));
+        return new ItemViewHolder(inflater.inflate(R.layout.item_donated, parent, false));
     }
 
     @Override

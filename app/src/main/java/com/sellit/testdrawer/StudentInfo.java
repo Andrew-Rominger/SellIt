@@ -7,43 +7,40 @@ import java.util.Map;
  * Created by Andrew on 4/28/2017.
  */
 
-public class UserInfo
+public class StudentInfo
 {
-    public String userName;
-    public String phoneNumber;
     public String fullName;
+    public String userName;
     public String uid;
     public String email;
-    public String state;
     public String city;
-    public String studentEmail;
-    public String TAG = UserInfo.class.getSimpleName();
-    public UserInfo()
+    public String state;
+    public String TAG = StudentInfo.class.getSimpleName();
+    public StudentInfo()
     {
 
     }
 
-    public UserInfo(String UUID, String UserName, String FullName, String Email, String studentEmail, String State, String City)
+    public StudentInfo(String UUID, String UserName, String FullName, String Email, String City, String State)
     {
         this.uid = UUID;
         this.userName = UserName;
         this.fullName = FullName;
         this.email = Email;
-        this.studentEmail = studentEmail;
-        this.state = State;
         this.city = City;
+        this.state = State;
     }
-    public Map<String, Object> toMap()
+
+    public Map<String, Object> toStudentMap()
     {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
         result.put("userName", userName);
-        result.put("city", city);
-        result.put("state", state);
         result.put("fullName", fullName);
         result.put("email", email);
-        result.put("TAG", "UserInfo");
+        result.put("city", city);
+        result.put("state", state);
+        result.put("TAG", "StudentInfo");
         return result;
     }
-
 }

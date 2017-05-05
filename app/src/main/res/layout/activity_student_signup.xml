@@ -12,19 +12,19 @@
 
     <!-- Edit Text Box for the user's username, for their account-->
     <EditText
-        android:id="@+id/UserNameBox"
+        android:id="@+id/usernameBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPersonName"
-        android:labelFor="@+id/UserNameBox"
+        android:labelFor="@+id/usernameBox"
         android:hint="@string/userName" />
 
     <!-- Edit Text Box for the user's password, for their account-->
     <EditText
-        android:id="@+id/PasswordBox"
-        android:labelFor="@+id/PasswordBox"
+        android:id="@+id/passwordBox"
+        android:labelFor="@+id/passwordBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -32,54 +32,26 @@
         android:inputType="textPassword"
         android:hint="@string/password" />
 
-    <!-- Edit Text Box for the user's email, for their account-->
-    <EditText
-        android:id="@+id/EmailBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:labelFor="@+id/EmailBox"
-        android:hint="@string/email" />
-
-    <EditText
-        android:id="@+id/Student"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_gravity="center"
-        android:labelFor="@+id/Student"
-        android:inputType="textPersonName"
-        android:hint="Student Email" />
-
     <EditText
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_gravity="center"
-        android:labelFor="@+id/fullName"
+        android:ems="10"
+        android:hint="Full Name"
         android:inputType="textPersonName"
-        android:hint="Full Name" />
+        android:labelFor="@+id/fullName" />
 
+    <!-- Edit Text Box for the user's email, for their account-->
     <EditText
+        android:id="@+id/emailBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cityInputSignUp"
-        android:hint="City"
+        android:layout_gravity="center"
         android:ems="10"
-        android:layout_gravity="center"
-        android:inputType="textPersonName" />
-
-    <Spinner
-        android:id="@+id/spinnerSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp">
-    </Spinner>
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:labelFor="@+id/emailBox" />
 
     <!-- Space between the password Edit Text and continue button, taking a weight of 1-->
     <Space
