@@ -40,7 +40,12 @@ public class ProfileFragment extends Fragment {
     FloatingActionButton toSettings;
 
     TextView firstName;
+<<<<<<< HEAD
     TextView location;
+=======
+    TextView state;
+    TextView city;
+>>>>>>> cd72dbf... Settings Bug Fixes
 
     String uid;
 
@@ -65,6 +70,13 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
+<<<<<<< HEAD
+=======
+                firstName.setText(userPage.firstName);
+                city.setText(userPage.city + ", ");
+                state.setText(userPage.state);
+                setupRecView();
+>>>>>>> cd72dbf... Settings Bug Fixes
 
                 firstName.setText(userPage.fullName);
                 location.setText(userPage.city + ", " + userPage.state);
@@ -83,6 +95,175 @@ public class ProfileFragment extends Fragment {
         return myView;
     }
 
+<<<<<<< HEAD
+=======
+    private void setupRecView()
+    {
+        getItemsForSale();
+        getSoldItems();
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recView.setLayoutManager(manager);
+        recView.setNestedScrollingEnabled(false);
+        recView.setItemAnimator(new DefaultItemAnimator());
+
+        LinearLayoutManager manager2 = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recVewSold.setLayoutManager(manager2);
+        recVewSold.setNestedScrollingEnabled(false);
+        recVewSold.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    private void getItemsForSale()
+    {
+        final ArrayList<Item> listItems = new ArrayList<>();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("items");
+        mRef.orderByChild("uid").equalTo(uid).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                HashMap<String, Object> items = (HashMap<String, Object>) dataSnapshot.getValue();
+                if(items==null)
+                {
+                    return;
+                }
+                Set keys = items.keySet();
+                Object[] itemList = items.values().toArray();
+                final ItemListAdapter adapter = new ItemListAdapter(listItems, getActivity());
+                for(int i = 0; i < itemList.length;i++)
+                {
+                    Object item = itemList[i];
+                    String Key = (String) keys.toArray()[i];
+                    HashMap<String, Object> itemMap = (HashMap<String, Object>) item;
+                    final Item itemTemp = new Item();
+                    itemTemp.description = (String) itemMap.remove("description");
+                    Log.d(Item.TAG, "description: " + itemTemp.description);
+                    itemTemp.Key = Key;
+                    itemTemp.name = (String) itemMap.remove("name");
+                    itemTemp.price = (String) itemMap.remove("price");
+                    itemTemp.rating = ((Long) itemMap.remove("rating")).intValue();
+                    itemTemp.uid = (String) itemMap.remove("uid");
+                    itemTemp.isSold = (boolean) itemMap.remove("isSold");
+                    if(itemTemp.isSold){continue;}
+                    String path = "gs://nationals-master.appspot.com";
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
+                    StorageReference sRef = storageReference.child("images/items/"+Key+".png");
+                    sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes)
+                        {
+                            itemTemp.image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                            listItems.add(itemTemp);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+                }
+
+                recView.setAdapter(adapter);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+    private void getSoldItems()
+    {
+        final ArrayList<Item> listItems = new ArrayList<>();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("items");
+        mRef.orderByChild("uid").equalTo(uid).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                HashMap<String, Object> items = (HashMap<String, Object>) dataSnapshot.getValue();
+                if(items==null)
+                {
+                    return;
+                }
+                Set keys = items.keySet();
+                Object[] itemList = items.values().toArray();
+                final ItemListAdapter adapter = new ItemListAdapter(listItems, getActivity());
+                for(int i = 0; i < itemList.length;i++)
+                {
+                    Object item = itemList[i];
+                    String Key = (String) keys.toArray()[i];
+                    HashMap<String, Object> itemMap = (HashMap<String, Object>) item;
+                    final Item itemTemp = new Item();
+                    itemTemp.description = (String) itemMap.remove("description");
+                    Log.d(Item.TAG, "description: " + itemTemp.description);
+                    itemTemp.Key = Key;
+                    itemTemp.name = (String) itemMap.remove("name");
+                    itemTemp.price = (String) itemMap.remove("price");
+                    itemTemp.rating = ((Long) itemMap.remove("rating")).intValue();
+                    itemTemp.uid = (String) itemMap.remove("uid");
+                    itemTemp.isSold = (boolean) itemMap.remove("isSold");
+                    if(!itemTemp.isSold){continue;}
+                    String path = "gs://nationals-master.appspot.com";
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
+                    StorageReference sRef = storageReference.child("images/items/"+Key+".png");
+                    sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] bytes)
+                        {
+                            itemTemp.image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                            listItems.add(itemTemp);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+
+                }
+
+                recVewSold.setAdapter(adapter);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        city = (TextView) view.findViewById(R.id.profileCity);
+        state = (TextView) view.findViewById(R.id.profileState);
+        firstName = (TextView) view.findViewById(R.id.profileFirstName);
+        recView = (RecyclerView) view.findViewById(R.id.profileRecView);
+        recVewSold = (RecyclerView) view.findViewById(R.id.profileRecViewSold);
+
+
+    }
+
+>>>>>>> cd72dbf... Settings Bug Fixes
     private void settings(){
         toSettings = (FloatingActionButton) myView.findViewById(R.id.toSettings);
         toSettings.setOnClickListener(new View.OnClickListener() {
