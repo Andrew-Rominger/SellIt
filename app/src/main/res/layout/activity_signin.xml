@@ -40,6 +40,17 @@
         android:labelFor="@+id/signInPassword"
         android:hint="@string/password" />
 
+    <!-- Button to ask user for email to reset password-->
+    <Button
+        android:id="@+id/recoverPwBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/recover_password"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+
     <!-- Spacing for the app's visual appeals, in between the password box to the bottom sign in button-->
     <Space
         android:layout_width="match_parent"
