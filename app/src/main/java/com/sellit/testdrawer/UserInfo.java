@@ -10,7 +10,6 @@ import java.util.Map;
 public class UserInfo
 {
     public String userName;
-    public String phoneNumber;
     public String fullName;
     public String uid;
     public String email;

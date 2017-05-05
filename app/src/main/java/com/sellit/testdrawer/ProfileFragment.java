@@ -64,7 +64,7 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
-                firstName.setText(userPage.firstName);
+                firstName.setText(userPage.fullName);
                 city.setText(userPage.city + ", ");
                 state.setText(userPage.state);
                 setupRecView();
