@@ -25,7 +25,6 @@ import java.util.Map;
 public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button saveButton;
-    Button addGoal;
     Spinner stateSpinner;
     EditText firstName;
     EditText lastName;
@@ -51,7 +50,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         lastName = (EditText) findViewById(R.id.lastNameInput);
         email = (EditText) findViewById(R.id.emailInput);
         city = (EditText) findViewById(R.id.cityInput);
-        addGoal = (Button) findViewById(R.id.addGoalBtn);
         saveButton = (Button) findViewById(R.id.saveButton);
         Username = (TextView) findViewById(R.id.userNameInputSettings);
 

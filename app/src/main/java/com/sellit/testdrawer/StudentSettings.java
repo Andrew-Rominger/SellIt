@@ -25,7 +25,6 @@ import java.util.Map;
 public class StudentSettings extends AppCompatActivity implements View.OnClickListener {
 
     Button saveButton;
-    Button addGoal;
 
     Spinner stateSpinner;
 
@@ -52,7 +51,6 @@ public class StudentSettings extends AppCompatActivity implements View.OnClickLi
         fullName = (EditText) findViewById(R.id.studentFullName);
         email = (EditText) findViewById(R.id.studentEmail);
         city = (EditText) findViewById(R.id.cityInput);
-        addGoal = (Button) findViewById(R.id.addGoalBtn);
         saveButton = (Button) findViewById(R.id.studentSaveBtn);
         Username = (TextView) findViewById(R.id.studentUsername);
 

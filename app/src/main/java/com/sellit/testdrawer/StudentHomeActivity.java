@@ -67,7 +67,7 @@ public class StudentHomeActivity extends AppCompatActivity
         sideBarEmail.setText(student.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new StudentListAllFragment());
+        transaction.replace(R.id.content_frame, new GoalFragment());
         transaction.commit();
     }
 

@@ -94,14 +94,16 @@ public class StudentSignUp extends AppCompatActivity {
                             String userName = usernameBox.getText().toString();
                             String name = fullName.getText().toString();
                             StudentInfo info = new StudentInfo(UID, userName, name,
-                                    emailBox.getText().toString(), "default", "default");
+                                    emailBox.getText().toString(), "", "");
 
                             mDatabase.child("studentInfo").child(UID).setValue(info);
-                            startActivity(new Intent(StudentSignUp.this, StudentHomeActivity.class));
+                            Intent intent = new Intent(StudentSignUp.this, GoalsActivity.class);
+                            intent.putExtra("UID", UID);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(StudentSignUp.this, "Authentication failed, user already exists.",
+                            Toast.makeText(StudentSignUp.this, "User already exists.",
                                     Toast.LENGTH_SHORT).show();
                         }
 

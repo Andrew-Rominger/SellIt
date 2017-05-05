@@ -63,6 +63,7 @@ public class CommentFragment extends Fragment{
                 Map<String, Object> childUpdates = new HashMap<>();
                 childUpdates.put("/comments/"+key, c.toMap());
                 mRef.updateChildren(childUpdates);
+                addCommentBox.setText("");
 
             }
         });
@@ -129,18 +130,19 @@ public class CommentFragment extends Fragment{
 
     private class commentListAdapter extends RecyclerView.Adapter<commentListAdapter.CommentViewHolder>
     {
+
+        @Override
+        public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            return new  CommentViewHolder(inflater.inflate(R.layout.comment_in_list,parent,false));
+        }
+
         LayoutInflater inflater;
         ArrayList<Comment> listComments;
         public commentListAdapter(ArrayList<Comment> listComments, Activity activity)
         {
             inflater = activity.getLayoutInflater();
             this.listComments = listComments;
-        }
-
-        @Override
-        public CommentViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-        {
-            return new  CommentViewHolder(inflater.inflate(R.layout.comment_in_list,parent,false));
         }
 
         @Override

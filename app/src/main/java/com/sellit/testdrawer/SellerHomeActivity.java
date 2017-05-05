@@ -86,7 +86,7 @@ public class SellerHomeActivity extends AppCompatActivity
         sideBarEmail.setText(user.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new AddItem());
+        transaction.replace(R.id.content_frame, new GoalFragment());
         transaction.commit();
     }
 
