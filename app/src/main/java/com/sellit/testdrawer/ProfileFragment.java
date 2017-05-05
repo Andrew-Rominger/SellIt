@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,15 +36,14 @@ public class ProfileFragment extends Fragment {
 
     View myView;
 
+    RecyclerView recView;
+    RecyclerView recVewSold;
+
     FloatingActionButton toSettings;
 
     TextView firstName;
-<<<<<<< HEAD
-    TextView location;
-=======
     TextView state;
     TextView city;
->>>>>>> cd72dbf... Settings Bug Fixes
 
     String uid;
 
@@ -59,27 +57,18 @@ public class ProfileFragment extends Fragment {
         myView = inflater.inflate(R.layout.activity_profile,container,false);
         Bundle args = getArguments();
         uid = args.getString("uid");
-
-        firstName = (TextView) myView.findViewById(R.id.profileFirstName);
-        location = (TextView) myView.findViewById(R.id.profileLocation);
-
-        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
         ValueEventListener listener = new ValueEventListener()
         {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
-<<<<<<< HEAD
-=======
                 firstName.setText(userPage.firstName);
                 city.setText(userPage.city + ", ");
                 state.setText(userPage.state);
                 setupRecView();
->>>>>>> cd72dbf... Settings Bug Fixes
 
-                firstName.setText(userPage.fullName);
-                location.setText(userPage.city + ", " + userPage.state);
             }
 
             @Override
@@ -89,14 +78,32 @@ public class ProfileFragment extends Fragment {
         };
         mRef.child("userInfo").child(uid).addListenerForSingleValueEvent(listener);
         settings();
+        TabHost host = (TabHost)myView.findViewById(R.id.hostTab);
+        host.setup();
+
+        //Items for Sale Tab
+        TabHost.TabSpec spec = host.newTabSpec("Selling");
+        spec.setContent(R.id.itemsForSale);
+        spec.setIndicator("Selling");
+        host.addTab(spec);
+
+        //Sold Items Tab
+        spec = host.newTabSpec("Sold");
+        spec.setContent(R.id.soldItems);
+        spec.setIndicator("Sold");
+        host.addTab(spec);
+
+        //Donations Tab
+        spec = host.newTabSpec("Donations");
+        spec.setContent(R.id.donations);
+        spec.setIndicator("Donations");
+        host.addTab(spec);
 
         toSettings = (FloatingActionButton) myView.findViewById(R.id.toSettings);
 
         return myView;
     }
 
-<<<<<<< HEAD
-=======
     private void setupRecView()
     {
         getItemsForSale();
@@ -263,7 +270,6 @@ public class ProfileFragment extends Fragment {
 
     }
 
->>>>>>> cd72dbf... Settings Bug Fixes
     private void settings(){
         toSettings = (FloatingActionButton) myView.findViewById(R.id.toSettings);
         toSettings.setOnClickListener(new View.OnClickListener() {
