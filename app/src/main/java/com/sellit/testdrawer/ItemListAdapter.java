@@ -61,6 +61,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         TextView Price;
         FrameLayout wrapper;
         Item item;
+
         public ItemViewHolder(View itemView)
         {
             super(itemView);

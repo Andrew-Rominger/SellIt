@@ -6,6 +6,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,9 +24,11 @@ public class ItemDetail extends AppCompatActivity
 {
     String Key;
     String TAG = ItemDetail.class.getSimpleName();
+    String itemViewing;
     DatabaseReference dRef;
     Item item;
     UserInfo userInfo;
+    Button contact;
 
     TextView Name;
     TextView Description;
@@ -45,6 +49,23 @@ public class ItemDetail extends AppCompatActivity
         ItemPrice = (TextView) findViewById(R.id.ID_ItemPrice);
         Location = (TextView) findViewById(R.id.ID_location);
         Key = getIntent().getStringExtra("Key");
+        contact = (Button) findViewById(R.id.contactItemDetailButton);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.content_home);
+                FragmentManager fragmentManager = getFragmentManager();
+                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
+                Bundle args = new Bundle();
+                args.putString("chatID", Key);
+                ChatFragment CF = new ChatFragment();
+                CF.setArguments(args);
+                transaction.replace(R.id.content_frame,CF);
+                transaction.commit();
+            }
+        });
+
         Log.d(TAG, "Key: " + Key);
         dRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference itemRef = dRef.child("items/"+ Key);
@@ -105,7 +126,7 @@ public class ItemDetail extends AppCompatActivity
         args.putString("postID", Key);
         CommentFragment CF = new CommentFragment();
         CF.setArguments(args);
-        transaction.replace(R.id.commentFramentHolder,CF);
+        transaction.replace(R.id.commentFragmentHolder,CF);
         transaction.commit();
     }
 }

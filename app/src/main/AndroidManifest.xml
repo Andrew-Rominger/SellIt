@@ -23,9 +23,11 @@
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
+
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
+
         </provider>
 
         <activity
@@ -36,6 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
         <activity
             android:name=".SignInActivity"
             android:configChanges="orientation"
