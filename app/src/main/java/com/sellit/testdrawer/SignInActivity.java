@@ -1,10 +1,13 @@
 package com.sellit.testdrawer;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +34,8 @@ import java.util.Map;
 public class SignInActivity extends AppCompatActivity {
 
     //Variables for the Buttons and Edit Text Boxes
+    Button recoverPwBtn;
+
     Button signInBtn;
     Button toCreateAcc;
 
@@ -45,6 +49,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private String m_Text;
 
     private String TAG = SignInActivity.class.getSimpleName();
 
@@ -52,6 +57,15 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        m_Text = "";
+        recoverPwBtn = (Button) findViewById(R.id.recoverPwBtn);
+        recoverPwBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                promptEmail();
+            }
+        });
 
         userEmail = (EditText) findViewById(R.id.signInEmail);
         password = (EditText) findViewById(R.id.signInPassword);
@@ -160,5 +174,54 @@ public class SignInActivity extends AppCompatActivity {
         System.out.println(students.toString());
         sStud = students.toString();
     }
+
+    private void promptEmail (){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignInActivity.this);
+        builder.setTitle("Email a recovery link");
+        // I'm using fragment here so I'm using getView() to provide ViewGroup
+        // but you can provide here any other instance of ViewGroup from your Fragment / Activity
+        View viewInflated = LayoutInflater.from(SignInActivity.this).inflate(R.layout.activity_dialog_recover_email, null, false);
+        // Set up the input
+        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        builder.setView(viewInflated);
+
+        // Set up the buttons
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                m_Text = input.getText().toString();
+                sendPwResetEmail(m_Text);
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+
+        builder.show();
+
+    }
+
+    private void sendPwResetEmail(String email) {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String emailAddress = email;
+
+        auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                        }
+                    }
+                });
+    }
+
 }
 
