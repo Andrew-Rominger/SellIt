@@ -36,6 +36,7 @@
             android:layout_gravity="center_vertical">
 
             <TextView
+                android:id="@+id/leftView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seller" />
@@ -48,6 +49,7 @@
                 android:theme="@style/SCBSwitch" />
 
             <TextView
+                android:id="@+id/rightView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buyer" />
