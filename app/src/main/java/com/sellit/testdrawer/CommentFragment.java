@@ -176,7 +176,9 @@ public class CommentFragment extends Fragment{
                     public void onDataChange(DataSnapshot dataSnapshot)
                     {
                         User u = dataSnapshot.getValue(User.class);
-                        userName.setText(u.UserName);
+                        if(u == null)
+                        {return;}
+                        userName.setText(u.userName);
 
                     }
 

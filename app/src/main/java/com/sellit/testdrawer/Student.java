@@ -41,7 +41,7 @@ public class Student
                 Student u = dataSnapshot.getValue(Student.class);
                 tempUser.UserName = u.UserName;
                 tempUser.Name = u.Name;
-                Log.w(TAG, "UserName: " + tempUser.UserName);
+                Log.w(TAG, "userName: " + tempUser.UserName);
 
             }
 

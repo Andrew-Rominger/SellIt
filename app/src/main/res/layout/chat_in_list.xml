@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/CIL_Wrapper"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="USERNAME"
+            android:textColor="@color/colorAccent"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <View
@@ -39,6 +40,7 @@
             android:layout_alignStart="@+id/posterUserName"
             android:layout_gravity="center_vertical"
             android:text="MESSAGE"
+            android:textColor="@color/colorAccent"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
 

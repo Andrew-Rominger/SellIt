@@ -108,12 +108,15 @@ public class ChatFragment extends Fragment{
 
                     final ChatInstance chatTemp = new ChatInstance();
                     chatTemp.Key = Key;
-                    chatTemp.buyerUID = (String) itemMap.remove("buyerUID");
-                    chatTemp.chatContent = (String) itemMap.remove("chatContent");
-                    chatTemp.sellerUID = (String) itemMap.remove("sellerUID");
+                    chatTemp.buyer = (String) itemMap.remove("buyer");
+                    Log.e(TAG, "Buyer UID: " + chatTemp.buyer);
+                    chatTemp.content = (String) itemMap.remove("content");
+                    Log.e(TAG, "Content " + chatTemp.content);
+                    chatTemp.seller = (String) itemMap.remove("seller");
                     chatTemp.chatID = (String) itemMap.remove("chatID");
-
+                    listChat.add(chatTemp);
                 }
+
                 Log.d(TAG, "Num messages: " + listChat.size());
                 recView.setAdapter(adapter);
             }
@@ -123,6 +126,5 @@ public class ChatFragment extends Fragment{
 
             }
         });
-        return;
     }
 }

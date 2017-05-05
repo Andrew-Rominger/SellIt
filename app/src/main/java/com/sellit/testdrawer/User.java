@@ -2,7 +2,6 @@ package com.sellit.testdrawer;
 
 import android.util.Log;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +17,7 @@ public class User
 {
     public String email;
     public String UUID;
-    public String UserName;
+    public String userName;
     public String Name;
     public ValueEventListener listener;
     String TAG = User.class.getSimpleName();
@@ -40,9 +39,9 @@ public class User
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 User u = dataSnapshot.getValue(User.class);
-                tempUser.UserName = u.UserName;
+                tempUser.userName = u.userName;
                 tempUser.Name = u.Name;
-                Log.w(TAG, "UserName: " + tempUser.UserName);
+                Log.w(TAG, "userName: " + tempUser.userName);
 
             }
 

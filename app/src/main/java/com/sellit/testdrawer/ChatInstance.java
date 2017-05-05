@@ -10,22 +10,22 @@ import java.util.Map;
  */
 
 public class ChatInstance {
-    public String buyerUID;
-    public String sellerUID;
-    public String chatContent;
+    public String buyer;
+    public String seller;
+    public String content;
     public String chatID;
-    public Date messageDate;
+    public Date dateCreated;
     public String Key;
     public String TAG = ChatInstance.class.getSimpleName();
 
     public ChatInstance() {
     }
 
-    public ChatInstance(String buyerUID, String sellerUID, String chatContent, Date messageDate, String chatID) {
-        this.buyerUID = buyerUID;
-        this.sellerUID = sellerUID;
-        this.chatContent = chatContent;
-        this.messageDate = messageDate;
+    public ChatInstance(String buyer, String seller, String chatContent, Date dateCreated, String chatID) {
+        this.buyer = buyer;
+        this.seller = seller;
+        this.content = chatContent;
+        this.dateCreated = dateCreated;
         this.chatID = chatID;
     }
 
@@ -33,11 +33,11 @@ public class ChatInstance {
     {
         HashMap<String, Object> result = new HashMap<>();
         result.put("chatID", chatID);
-        result.put("buyer", buyerUID);
-        result.put("seller",sellerUID);
-        result.put("content", chatContent);
-        result.put("dateCreated", messageDate);
-        result.put("seller",sellerUID);
+        result.put("buyer", buyer);
+        result.put("seller", seller);
+        result.put("content", content);
+        result.put("dateCreated", dateCreated);
+        result.put("seller", seller);
         return result;
     }
 }

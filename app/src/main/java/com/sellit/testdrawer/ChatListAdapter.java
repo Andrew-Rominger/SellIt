@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 /**
@@ -37,7 +43,7 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatVi
     public ChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         Log.d(TAG, "OnCreateViewHolder");
-        return new ChatListAdapter.ChatViewHolder(inflater.inflate(R.layout.chat_in_list, parent));
+        return new ChatListAdapter.ChatViewHolder(inflater.inflate(R.layout.chat_in_list, parent, false));
     }
 
     @Override
@@ -53,11 +59,10 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatVi
         return listChat.size();
     }
 
-    public class ChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    public class ChatViewHolder extends RecyclerView.ViewHolder
     {
         View chatView;
-        TextView itemBuyer;
-        TextView itemSeller;
+        TextView userName;
         TextView messageContent;
         FrameLayout wrapper;
         ChatInstance chat;
@@ -68,24 +73,42 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatVi
             Log.d(TAG, "ChatViewHolder Constructor");
             this.chatView = chatView;
             messageContent = (TextView) chatView.findViewById(R.id.chatContent);
+            userName = (TextView) chatView.findViewById(R.id.posterUserName);
 
-            wrapper = (FrameLayout) chatView.findViewById(R.id.CIL_Wrapper);
-            wrapper.setOnClickListener(this);
         }
+
 
         public void setData(ChatInstance chat)
         {
             this.chat = chat;
             Log.d(TAG, "setData");
-            messageContent.setText(chat.chatContent);
-            itemSeller.setText(chat.sellerUID);
-            itemBuyer.setText(chat.buyerUID);
+            messageContent.setText(chat.content);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+            ValueEventListener listener = new ValueEventListener()
+            {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+                    UserInfo u = dataSnapshot.getValue(UserInfo.class);
+                    if(u == null)
+                    {
+                        userName.setText("User Name not found");
+
+                    }else
+                    {
+                        userName.setText(u.userName);
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            mRef.child("studentInfo").child(chat.buyer).addListenerForSingleValueEvent(listener);
         }
 
-        @Override
-        public void onClick(View v)
-        {
-            return;
-        }
     }
 }
