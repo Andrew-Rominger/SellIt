@@ -1,6 +1,7 @@
 package com.sellit.testdrawer;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -22,9 +23,14 @@ import com.google.firebase.storage.StorageReference;
 
 public class ItemDetail extends AppCompatActivity
 {
+    String currentUserName;
     String Key;
     String TAG = ItemDetail.class.getSimpleName();
     String itemViewing;
+    String uid;
+    String userPostedEmail;
+    String userPostedName;
+    String itemName;
     DatabaseReference dRef;
     Item item;
     UserInfo userInfo;
@@ -54,15 +60,12 @@ public class ItemDetail extends AppCompatActivity
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.content_home);
-                FragmentManager fragmentManager = getFragmentManager();
-                android.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-                Bundle args = new Bundle();
-                args.putString("chatID", Key);
-                ChatFragment CF = new ChatFragment();
-                CF.setArguments(args);
-                transaction.replace(R.id.content_frame,CF);
-                transaction.commit();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("plain/text");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {userPostedEmail});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Regarding: " + itemName);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello " + userPostedName +", I am interested in buying the item: " + itemName + ". How about we stay in contact?\n From, \n" + currentUserName);
+                startActivity(intent.createChooser(intent,"Choose An Email App:"));
             }
         });
 
@@ -76,6 +79,8 @@ public class ItemDetail extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 item =  dataSnapshot.getValue(Item.class);
+                itemName = item.name;
+                uid = item.uid;
                 Name.setText(item.name);
                 Description.setText(item.description);
                 ItemPrice.setText("$" + item.price);
@@ -118,8 +123,25 @@ public class ItemDetail extends AppCompatActivity
                 Log.e(TAG, databaseError.getDetails());
             }
         };
-
         itemRef.addListenerForSingleValueEvent(listener);
+
+        DatabaseReference uRef = FirebaseDatabase.getInstance().getReference();
+
+        ValueEventListener listener1 = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userPostedEmail = dataSnapshot.child("userInfo").child(uid).child("email").getValue().toString();
+                userPostedName = dataSnapshot.child("userInfo").child(uid).child("userName").getValue().toString();
+                currentUserName = dataSnapshot.child("userInfo").child(uid).child("userName").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        uRef.addListenerForSingleValueEvent(listener1);
+
         FragmentManager FM = getFragmentManager();
         android.app.FragmentTransaction transaction = FM.beginTransaction();
         Bundle args = new Bundle();
