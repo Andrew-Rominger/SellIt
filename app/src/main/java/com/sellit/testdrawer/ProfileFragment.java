@@ -70,7 +70,7 @@ public class ProfileFragment extends Fragment {
             {
                 userPage = dataSnapshot.getValue(UserInfo.class);
 
-                firstName.setText(userPage.firstName);
+                firstName.setText(userPage.fullName);
                 location.setText(userPage.city + ", " + userPage.state);
                 setupRecView();
             }

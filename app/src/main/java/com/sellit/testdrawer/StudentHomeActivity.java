@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 public class StudentHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseUser student;
-    TextView sideBarUsername;
     TextView sideBarEmail;
     String TAG = StudentHomeActivity.class.getSimpleName();
 
@@ -47,7 +46,6 @@ public class StudentHomeActivity extends AppCompatActivity
 
         View navHeader = navigationView.getHeaderView(0);
 
-        sideBarUsername = (TextView) navHeader.findViewById(R.id.fullNameSidebar);
         sideBarEmail = (TextView) navHeader.findViewById(R.id.emailSideBar);
         student = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
@@ -57,7 +55,6 @@ public class StudentHomeActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Student s = dataSnapshot.getValue(Student.class);
-                sideBarUsername.setText(s.Name);
 
             }
 
@@ -70,7 +67,7 @@ public class StudentHomeActivity extends AppCompatActivity
         sideBarEmail.setText(student.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new ListDonationsFragment());
+        transaction.replace(R.id.content_frame, new StudentListAllFragment());
         transaction.commit();
     }
 
@@ -99,7 +96,7 @@ public class StudentHomeActivity extends AppCompatActivity
         if (id == R.id.nav_my_donations) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new ListDonationsFragment())
+                            , new StudentListAllFragment())
                     .commit();
         } else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()

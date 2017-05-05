@@ -44,24 +44,24 @@
         android:hint="@string/email" />
 
     <EditText
-        android:id="@+id/phoneInput"
+        android:id="@+id/Student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_gravity="center"
-        android:labelFor="@+id/emailInput"
-        android:inputType="phone"
-        android:hint="Phone" />
+        android:labelFor="@+id/Student"
+        android:inputType="textPersonName"
+        android:hint="Student Email" />
 
     <EditText
-        android:id="@+id/firstName"
+        android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_gravity="center"
-        android:labelFor="@+id/firstName"
+        android:labelFor="@+id/fullName"
         android:inputType="textPersonName"
-        android:hint="@string/firstName" />
+        android:hint="Full Name" />
 
     <EditText
         android:layout_width="wrap_content"

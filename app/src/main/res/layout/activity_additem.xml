@@ -5,35 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/itemNameInput"
-            android:labelFor="@+id/itemNameInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/name" />
+    <EditText
+        android:id="@+id/itemNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/itemNameInput" />
 
-        <EditText
-            android:id="@+id/itemPriceInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:ems="10"
-            android:hint="@string/price"
-            android:inputType="number|numberDecimal"
-            android:labelFor="@+id/itemPriceInput" />
+    <EditText
+        android:id="@+id/itemPriceInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/price"
+        android:inputType="number|numberDecimal"
+        android:labelFor="@+id/itemPriceInput" />
 
-        <EditText
-            android:id="@+id/itemDescriptionInput"
-            android:labelFor="@+id/itemDescriptionInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/desc" />
+    <EditText
+        android:id="@+id/itemDescriptionInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/desc"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/itemDescriptionInput" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,38 +43,31 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
         <EditText
             android:id="@+id/itemCity"
             android:layout_width="156dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.07"
             android:ems="10"
             android:hint="City"
             android:inputType="textPersonName"
-            android:labelFor="@+id/itemDescriptionInput"
-            android:layout_weight="0.07" />
+            android:labelFor="@+id/itemDescriptionInput" />
 
         <Spinner
-                android:id="@+id/addItemStateSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.28"
-                android:layout_gravity="center">
-            </Spinner>
+            android:id="@+id/addItemStateSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.28"/>
 
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
     </LinearLayout>
-
-        <RatingBar
-            android:id="@+id/itemCondition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,23 +75,30 @@
         android:orientation="horizontal">
 
         <Space
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".5"/>
 
         <Spinner
             android:id="@+id/itemType"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:spinnerMode="dialog"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
 
         <Space
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".5"/>
-
     </LinearLayout>
+
+
+    <RatingBar
+        android:id="@+id/itemCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
         <Button
             android:id="@+id/takePicBtn"
@@ -121,14 +121,14 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/photoImg"
@@ -146,7 +146,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
         <Button
             android:id="@+id/submitBtn"
@@ -158,7 +158,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5" />
 
     </LinearLayout>
 </LinearLayout>

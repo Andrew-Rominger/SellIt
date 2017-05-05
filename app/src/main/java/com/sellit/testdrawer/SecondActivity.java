@@ -73,7 +73,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 UserInfo u = dataSnapshot.getValue(UserInfo.class);
-                firstName.setText(u.firstName);
+                firstName.setText(u.fullName);
                 city.setText(u.city);
                 phone.setText(u.phoneNumber);
                 Username.setText(u.userName);
@@ -94,7 +94,7 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         UserInfo newData = new UserInfo();
         newData.city = city.getText().toString();
         newData.phoneNumber = phone.getText().toString();
-        newData.firstName = firstName.getText().toString();
+        newData.fullName = firstName.getText().toString();
         newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         newData.state = stateSpinner.getSelectedItem().toString();
         newData.email = email.getText().toString();

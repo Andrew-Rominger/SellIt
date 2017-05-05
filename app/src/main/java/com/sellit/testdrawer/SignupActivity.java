@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
-
 /**
  * Created by 2524904 on 4/5/2017.
  */
@@ -35,8 +33,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText passwordInput;
     EditText emailInput;
     EditText cityInput;
-    EditText phoneInput;
-    EditText firstName;
+    EditText fullName;
+    EditText student;
     Spinner stateSpinner;
 
 
@@ -55,8 +53,8 @@ public class SignupActivity extends AppCompatActivity {
         passwordInput = (EditText) findViewById(R.id.PasswordBox);
         emailInput = (EditText) findViewById(R.id.EmailBox);
         cityInput = (EditText) findViewById(R.id.cityInputSignUp);
-        phoneInput = (EditText) findViewById(R.id.phoneInput);
-        firstName = (EditText) findViewById(R.id.firstName);
+        fullName = (EditText) findViewById(R.id.fullName);
+        student = (EditText) findViewById(R.id.Student);
         String[] states = getResources().getStringArray(R.array.states);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
         stateSpinner = (Spinner) findViewById(R.id.spinnerSignUp);
@@ -76,24 +74,23 @@ public class SignupActivity extends AppCompatActivity {
 
         //On Click listener for the Sign In Button
         toSignIn = (Button) findViewById(R.id.toSignInBtn);
-        toSignIn.setOnClickListener(new View.OnClickListener(){
+        toSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 toSignInBtn();
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, SignInActivity.class));
     }
 
 
-    private void signUp()
-    {
+    private void signUp() {
         mAuth.createUserWithEmailAndPassword(emailInput.getText().toString(), passwordInput.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -104,14 +101,14 @@ public class SignupActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             String UID = user.getUid();
                             String userName = usernameInput.getText().toString();
-                            String name = firstName.getText().toString();
-                            String phoneNumber = phoneInput.getText().toString();
+                            String name = fullName.getText().toString();
                             String city = cityInput.getText().toString();
+                            String studentEmail = student.getText().toString();
                             Log.e(TAG, city);
-                            UserInfo info = new UserInfo(UID, userName, name, phoneNumber,
-                                    emailInput.getText().toString(), stateSpinner.getSelectedItem().toString(), city);
+                            UserInfo info = new UserInfo(UID, userName, name,
+                                    emailInput.getText().toString(), studentEmail, stateSpinner.getSelectedItem().toString(), city);
 
-                            mDatabase.child("userInfo").child(UID).setValue(info);
+                            mDatabase.child("studentInfo").child(UID).setValue(info);
                             startActivity(new Intent(SignupActivity.this, HomeActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
@@ -129,7 +126,7 @@ public class SignupActivity extends AppCompatActivity {
 
 
     //Function for clicking the Sign In Button and navigating to it
-    private void toSignInBtn(){
+    private void toSignInBtn() {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
