@@ -43,6 +43,7 @@
             android:name=".SignInActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +55,7 @@
             android:name=".SignupActivity"
             android:configChanges="orientation"
             android:label="@string/signUp"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
         </activity>
@@ -61,6 +63,7 @@
             android:name=".FourthLayout"
             android:configChanges="orientation"
             android:label="@string/signOut"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
         </activity>
@@ -68,6 +71,7 @@
             android:name=".AttributesActivity"
             android:configChanges="orientation"
             android:label="@string/attributions"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
         </activity>
@@ -75,6 +79,7 @@
             android:name=".GoalsActivity"
             android:configChanges="orientation"
             android:label="@string/goals"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
         </activity>
@@ -82,6 +87,16 @@
             android:name=".SecondActivity"
             android:configChanges="orientation"
             android:label="@string/profile"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".SellerHomeActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
         </activity>
@@ -89,37 +104,54 @@
             android:name=".DonationActivity"
             android:configChanges="orientation"
             android:label="@string/newDonation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
 
         <activity
             android:name=".WelcomeActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".StudentHomeActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".StudentSignUp"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".StudentSettings"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
 
 
         <activity
             android:name=".AddItemActivity"
             android:configChanges="orientation"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/addItem"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ItemDetail"
             android:configChanges="orientation"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="Item Detail"
             android:screenOrientation="portrait" />
 

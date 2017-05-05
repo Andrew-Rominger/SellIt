@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Group Stating what the options are in the drawer-->
     <group android:checkableBehavior="single">
         <!-- The Home Button in the drawer-->
         <item
-            android:id="@+id/nav_first_layout"
+            android:id="@+id/nav_seller_addItem"
             android:icon="@drawable/ic_menu_home"
-            android:title="Browse Items" />
+            android:title="Sell Item" />
+        <!--The My Items Button in the drawer-->
+        <item
+            android:id="@+id/nav_my_items"
+            android:icon="@drawable/ic_menu_exit"
+            android:title="@string/fourth_layout" />
+        <!-- The Profile Button in the drawer-->
         <item
             android:id="@+id/nav_activity_profile"
             android:icon="@drawable/ic_menu_profile"

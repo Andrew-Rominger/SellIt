@@ -16,25 +16,26 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.google.firebase.auth.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomeActivity extends AppCompatActivity
+public class SellerHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseUser user;
     TextView sideBarUsername;
     TextView sideBarEmail;
     Switch switch1;
-    String TAG = HomeActivity.class.getSimpleName();
+    String TAG = SellerHomeActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_seller_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,8 +61,8 @@ public class HomeActivity extends AppCompatActivity
         switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    Intent myIntent = new Intent(HomeActivity.this, SellerHomeActivity.class);
-                    HomeActivity.this.startActivity(myIntent);
+                    Intent myIntent = new Intent(SellerHomeActivity.this, HomeActivity.class);
+                    SellerHomeActivity.this.startActivity(myIntent);
 
                 }
             }
@@ -85,7 +86,7 @@ public class HomeActivity extends AppCompatActivity
         sideBarEmail.setText(user.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new ListAllFragment());
+        transaction.replace(R.id.content_frame, new AddItem());
         transaction.commit();
     }
 
@@ -111,10 +112,10 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_seller_addItem) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
-                            , new ListAllFragment())
+                            , new AddItem())
                     .commit();
         } else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()

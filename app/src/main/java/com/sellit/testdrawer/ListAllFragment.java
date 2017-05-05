@@ -40,21 +40,10 @@ public class ListAllFragment extends Fragment {
     String TAG = ListAllFragment.class.getSimpleName();
     View myView;
 
-    FloatingActionButton createItem;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.list_all_fragment, container, false);
-        createItem = (FloatingActionButton) myView.findViewById(R.id.createItem);
-        newItem();
         return myView;
-    }
-    private void newItem(){
-        createItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toCreateItem();
-            }
-        });
     }
 
     @Override
@@ -62,11 +51,6 @@ public class ListAllFragment extends Fragment {
         recView = (RecyclerView) view.findViewById(R.id.listAllRecView);
         setupRec(view);
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    private void toCreateItem(){
-        Intent intent = new Intent(getActivity(), AddItemActivity.class);
-        startActivity(intent);
     }
     private void setupRec(View view) {
 
