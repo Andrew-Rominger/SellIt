@@ -113,10 +113,8 @@ public class SellerHomeActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_seller_addItem) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new AddItem())
-                    .commit();
+            Intent myIntent = new Intent(SellerHomeActivity.this, AddItemActivity.class);
+            SellerHomeActivity.this.startActivity(myIntent);
         } else if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame

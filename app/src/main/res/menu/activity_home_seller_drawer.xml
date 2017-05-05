@@ -9,12 +9,6 @@
             android:id="@+id/nav_seller_addItem"
             android:icon="@drawable/ic_menu_home"
             android:title="Sell Item" />
-        <!--The My Items Button in the drawer-->
-        <item
-            android:id="@+id/nav_my_items"
-            android:icon="@drawable/ic_menu_exit"
-            android:title="@string/fourth_layout" />
-        <!-- The Profile Button in the drawer-->
         <item
             android:id="@+id/nav_activity_profile"
             android:icon="@drawable/ic_menu_profile"
