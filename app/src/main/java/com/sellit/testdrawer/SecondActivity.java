@@ -31,7 +31,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
     EditText lastName;
     EditText email;
     EditText city;
-    EditText phone;
     TextView Username;
 
     String TAG = SecondActivity.class.getSimpleName();
@@ -54,7 +53,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         city = (EditText) findViewById(R.id.cityInput);
         addGoal = (Button) findViewById(R.id.addGoalBtn);
         saveButton = (Button) findViewById(R.id.saveButton);
-        phone = (EditText) findViewById(R.id.phoneInput);
         Username = (TextView) findViewById(R.id.userNameInputSettings);
 
         saveButton.setOnClickListener(this);
@@ -75,7 +73,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 UserInfo u = dataSnapshot.getValue(UserInfo.class);
                 firstName.setText(u.fullName);
                 city.setText(u.city);
-                phone.setText(u.phoneNumber);
                 Username.setText(u.userName);
             }
 
@@ -93,7 +90,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         FirebaseAuth.getInstance().getCurrentUser().updateEmail(email.getText().toString());
         UserInfo newData = new UserInfo();
         newData.city = city.getText().toString();
-        newData.phoneNumber = phone.getText().toString();
         newData.fullName = firstName.getText().toString();
         newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         newData.state = stateSpinner.getSelectedItem().toString();
