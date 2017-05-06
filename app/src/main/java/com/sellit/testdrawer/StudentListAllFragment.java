@@ -1,13 +1,11 @@
 package com.sellit.testdrawer;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -65,7 +63,8 @@ public class StudentListAllFragment extends Fragment {
     public void getItems() {
         final ArrayList<Item> listItems = new ArrayList<>();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
-        mRef.child("items").addValueEventListener(new ValueEventListener() {
+        DatabaseReference itemRef = mRef.child("items").getRef();
+        mRef.orderByChild("isSold").equalTo(false).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 HashMap<String, Object> items = (HashMap<String, Object>) dataSnapshot.getValue();
