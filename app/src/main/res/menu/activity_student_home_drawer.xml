@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Group Stating what the options are in the drawer-->
     <group android:checkableBehavior="single">
-        <!-- The Home Button in the drawer-->
-        <item
-            android:id="@+id/nav_my_donations"
-            android:icon="@drawable/ic_menu_coin"
-            android:title="My Donations" />
-        <!-- The Add Item Button in the drawer-->
-        <!-- The Donation Button in the drawer-->
         <item
             android:id="@+id/nav_my_profile"
             android:icon="@drawable/ic_menu_profile"
             android:title="My Profile" />
-        <!-- The Profile Button in the drawer-->
-        <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_menu_notifications"
-            android:title="Notifications" />
         <!-- The Sign Out Button in the drawer-->
         <item
             android:id="@+id/nav_sign_out"

@@ -67,7 +67,7 @@ public class StudentHomeActivity extends AppCompatActivity
         sideBarEmail.setText(student.getEmail());
         FragmentManager FM = getFragmentManager();
         FragmentTransaction transaction = FM.beginTransaction();
-        transaction.replace(R.id.content_frame, new GoalFragment());
+        transaction.replace(R.id.content_frame, new ListDonationsFragment());
         transaction.commit();
     }
 
@@ -93,12 +93,7 @@ public class StudentHomeActivity extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getFragmentManager();
 
-        if (id == R.id.nav_my_donations) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new StudentListAllFragment())
-                    .commit();
-        } else if (id == R.id.nav_sign_out) {
+        if (id == R.id.nav_sign_out) {
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , new FourthFragment())
@@ -111,11 +106,6 @@ public class StudentHomeActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.content_frame
                             , pf)
-                    .commit();
-        } else if (id == R.id.nav_notifications) {
-            fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame
-                            , new StudentNotifications())
                     .commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.student_drawer);

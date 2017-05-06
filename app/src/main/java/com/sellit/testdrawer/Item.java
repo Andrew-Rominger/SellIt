@@ -45,6 +45,7 @@ public class Item
         result.put("description", description);
         result.put("rating", rating);
         result.put("isSold",isSold);
+        result.put("donatedTo", donatedTo);
         return result;
     }
 
