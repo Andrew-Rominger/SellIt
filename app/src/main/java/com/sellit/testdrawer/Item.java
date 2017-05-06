@@ -1,10 +1,6 @@
 package com.sellit.testdrawer;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +29,6 @@ public class Item
         this.rating = rating;
         this.uid = uid;
         this.isSold = isSold;
-
     }
 
     public Item() {

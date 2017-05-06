@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,8 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class ItemDetail extends AppCompatActivity
-{
+public class ItemDetail extends AppCompatActivity {
     String currentUserName;
     String Key;
     String TAG = ItemDetail.class.getSimpleName();
@@ -35,17 +36,18 @@ public class ItemDetail extends AppCompatActivity
     Item item;
     UserInfo userInfo;
     Button contact;
+    Boolean isCurrentUser;
 
     TextView Name;
     TextView Description;
     TextView Rating;
     TextView ItemPrice;
     TextView Location;
+    Button isOwner;
     ImageView image;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
@@ -56,34 +58,51 @@ public class ItemDetail extends AppCompatActivity
         Location = (TextView) findViewById(R.id.ID_location);
         Key = getIntent().getStringExtra("Key");
         contact = (Button) findViewById(R.id.contactItemDetailButton);
+        isOwner = (Button) findViewById(R.id.isOwner);
 
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[] {userPostedEmail});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{userPostedEmail});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Regarding: " + itemName);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hello " + userPostedName +", I am interested in buying the item: " + itemName + ". How about we stay in contact?\n From, \n" + currentUserName);
-                startActivity(intent.createChooser(intent,"Choose An Email App:"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hello " + userPostedName + ", I am interested in buying the item: " + itemName + ". How about we stay in contact?\n From, \n" + currentUserName);
+                startActivity(intent.createChooser(intent, "Choose An Email App:"));
             }
         });
 
         Log.d(TAG, "Key: " + Key);
         dRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference itemRef = dRef.child("items/"+ Key);
+        final DatabaseReference itemRef = dRef.child("items/" + Key);
 
-        ValueEventListener listener = new ValueEventListener()
-        {
+        ValueEventListener listener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                item =  dataSnapshot.getValue(Item.class);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                item = dataSnapshot.getValue(Item.class);
                 itemName = item.name;
                 uid = item.uid;
                 Name.setText(item.name);
                 Description.setText(item.description);
                 ItemPrice.setText("$" + item.price);
+                if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(uid)
+                        && isOwner.getText().toString().equals("Mark Item As Sold")) {
+                    Log.d(TAG, "Found As Owner");
+                    isOwner.setVisibility(View.VISIBLE);
+                    isOwner.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Item item1 = new Item(item.name, item.price,
+                                    item.description, item.rating, item.uid, true);
+
+                            itemRef.updateChildren(item1.toMap());
+                            Log.d(TAG, "ID: " + Key);
+                            Toast.makeText(ItemDetail.this, "Item Marked As Sold", Toast.LENGTH_SHORT).show();
+                            isOwner.setVisibility(View.INVISIBLE);
+                            //startActivity(new Intent(ItemDetail.this, HomeActivity.class));
+                        }
+                    });
+                }
                 DatabaseReference uRef = FirebaseDatabase.getInstance().getReference("userInfo");
                 ValueEventListener listener_user = new ValueEventListener() {
                     @Override
@@ -104,22 +123,20 @@ public class ItemDetail extends AppCompatActivity
                 String path = "gs://nationals-master.appspot.com";
                 StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(path);
                 Log.d(TAG, path);
-                final StorageReference sRef = storageReference.child("images/items/"+Key+".png");
-                sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>()
-                {
-                   @Override
-                   public void onSuccess(byte[] bytes) {
-                       Log.d(TAG, "Num Bytes: " + bytes.length);
-                       item.image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                       image.setImageDrawable(item.image);
-                   }
+                final StorageReference sRef = storageReference.child("images/items/" + Key + ".png");
+                sRef.getBytes(Long.MAX_VALUE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Log.d(TAG, "Num Bytes: " + bytes.length);
+                        item.image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                        image.setImageDrawable(item.image);
+                    }
                 });
                 Log.d(TAG, "description: " + item.description);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
+            public void onCancelled(DatabaseError databaseError) {
                 Log.e(TAG, databaseError.getDetails());
             }
         };
@@ -148,7 +165,7 @@ public class ItemDetail extends AppCompatActivity
         args.putString("postID", Key);
         CommentFragment CF = new CommentFragment();
         CF.setArguments(args);
-        transaction.replace(R.id.commentFragmentHolder,CF);
+        transaction.replace(R.id.commentFragmentHolder, CF);
         transaction.commit();
     }
 }
