@@ -121,40 +121,48 @@ public class EditItemActivity extends AppCompatActivity {
                 // This was before checking for permissions to read and write. Call later. openBackCamera(1, EditItemActivity.this);
             }
         });
+
         saveBtnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                Item item = new Item(itemNameEdit.getText().toString(), itemPriceEdit.getText().toString(), itemDescriptionEdit.getText().toString(), (int) itemConditionEdit.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
-                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
-                String key = mRef.push().getKey();
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/items/"+key, item.toMap());
-                mRef.updateChildren(childUpdates);
-                Log.d(TAG, "ID: " + key);
-                StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/items/" + key + ".png");
-                ByteArrayOutputStream OS = new ByteArrayOutputStream();
-                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
-                byte[] data = OS.toByteArray();
-                UploadTask UT = sRef.putBytes(data);
-                UT.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Could not save Image. " + e.getLocalizedMessage());
-                    }
-                });
-                UT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(EditItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(EditItemActivity.this, HomeActivity.class));
-                    }
-                });
+                if (!itemNameEdit.getText().toString().isEmpty() && !itemPriceEdit.getText().toString().isEmpty() && !itemDescriptionEdit.getText().toString().isEmpty() && itemConditionEdit.getRating() != 0) {
+                    Item item = new Item(itemNameEdit.getText().toString(), itemPriceEdit.getText().toString(), itemDescriptionEdit.getText().toString(), (int) itemConditionEdit.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
+                    DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                    String key = mRef.push().getKey();
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/items/" + key, item.toMap());
+                    mRef.updateChildren(childUpdates);
+                    Log.d(TAG, "ID: " + key);
+                    StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/items/" + key + ".png");
+                    ByteArrayOutputStream OS = new ByteArrayOutputStream();
+                    myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
+                    byte[] data = OS.toByteArray();
+                    UploadTask UT = sRef.putBytes(data);
+                    UT.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "Could not save Image. " + e.getLocalizedMessage());
+                        }
+                    });
+                    UT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(EditItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(EditItemActivity.this, HomeActivity.class));
+                        }
+                    });
+                } else {
+                    Toast.makeText(EditItemActivity.this, "All fields must be filled out to save.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
             }
         });
 
+
     }
+
     //Requests to use the write to storage, and read to storage. Checks to see if the request has already been made.
 
     private boolean isMarshmallowOrHigher () {

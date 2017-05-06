@@ -23,7 +23,8 @@
                     android:background="@drawable/rounded_edit_text"
                     android:hint="Add A Comment..."
                     android:padding="10dp"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:maxLines="1"/>
 
                 <ImageView
                     android:layout_width="24dp"
