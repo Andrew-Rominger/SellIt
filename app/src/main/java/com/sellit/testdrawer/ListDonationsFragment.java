@@ -52,14 +52,14 @@ public class ListDonationsFragment extends Fragment
     }
     private void setupRec(View view)
     {
-
-        getItems();
+        //getItems();
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recView.setLayoutManager(manager);
         recView.setItemAnimator(new DefaultItemAnimator());
 
     }
+    /*
     public void getItems()
     {
         final ArrayList<Donation> donationItems = new ArrayList<>();
@@ -133,5 +133,5 @@ public class ListDonationsFragment extends Fragment
             }
         });
         return;
-    }
+    }*/
 }

@@ -1,9 +1,12 @@
 package com.sellit.testdrawer;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +17,7 @@ import android.widget.Button;
  * Created by 2524904 on 4/5/2017.
  */
 
-public class FourthFragment extends Fragment{
+public class FourthFragment extends Fragment {
 
     View myView;
     Button toHome;
@@ -23,12 +26,13 @@ public class FourthFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.fourth_layout,container,false);
+        myView = inflater.inflate(R.layout.fourth_layout, container, false);
         setUp();
+        onBackPressed();
         return myView;
     }
 
-    private void setUp(){
+    private void setUp() {
         toHome = (Button) myView.findViewById(R.id.noBtn);
         toHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,20 +42,26 @@ public class FourthFragment extends Fragment{
         });
 
         toSignIn = (Button) myView.findViewById(R.id.yesBtn);
-        toSignIn.setOnClickListener(new View.OnClickListener(){
+        toSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 toSignIn();
             }
         });
     }
-    private void toHome(){
+
+    private void toHome() {
         Intent intent = new Intent(getActivity(), HomeActivity.class);
         startActivity(intent);
     }
 
-    private void toSignIn(){
+    private void toSignIn() {
         Intent intent = new Intent(getActivity(), SignInActivity.class);
         startActivity(intent);
     }
+
+    public void onBackPressed() {
+
+    }
 }
+

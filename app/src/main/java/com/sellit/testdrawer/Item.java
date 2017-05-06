@@ -20,17 +20,15 @@ public class Item
     public Drawable image;
     public String uid;
     public String Key;
-    public String donatedTo;
     public boolean isSold;
 
-    public Item(String name, String price, String description, int rating, String uid, String donatedTo, boolean isSold) {
+    public Item(String name, String price, String description, int rating, String uid, boolean isSold) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.rating = rating;
         this.uid = uid;
         this.isSold = isSold;
-        this.donatedTo = donatedTo;
     }
 
     public Item() {
@@ -45,7 +43,6 @@ public class Item
         result.put("description", description);
         result.put("rating", rating);
         result.put("isSold",isSold);
-        result.put("donatedTo", donatedTo);
         return result;
     }
 
