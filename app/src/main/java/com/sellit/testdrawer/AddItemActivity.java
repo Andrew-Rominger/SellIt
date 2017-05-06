@@ -99,16 +99,13 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 selected = itemType.getSelectedItem().toString();
-                if (!selected.equals("Thing"))
+                if (!selected.equals("Furniture"))
                     spinner_item = selected;
                 System.out.println(selected);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-            }
-        });
+            public void onNothingSelected(AdapterView<?> arg0) {}});
 
         //On button start camera
         takePhoto.setOnClickListener(new View.OnClickListener() {
