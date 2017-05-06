@@ -57,6 +57,7 @@ public class AddItemActivity extends AppCompatActivity {
     Bitmap myBitmap;
     int itemType_position;
     String pictureImagePath;
+    String donatedTo;
     EditText itemName;
     EditText itemPrice;
     EditText itemDescription;
@@ -121,6 +122,7 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), , false);
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
                 String key = mRef.push().getKey();
                 Item item = new Item(itemName.getText().toString(), itemPrice.getText().toString(), itemDescription.getText().toString(), (int) itemCondition.getRating(), FirebaseAuth.getInstance().getCurrentUser().getUid(), false);
