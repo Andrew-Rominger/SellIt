@@ -186,7 +186,7 @@ public class ProfileFragment extends Fragment {
     private void getSoldItems()
     {
         final ArrayList<Item> listItems = new ArrayList<>();
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("items");
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("soldItems");
         mRef.orderByChild("uid").equalTo(uid).addValueEventListener(new ValueEventListener()
         {
             @Override

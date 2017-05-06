@@ -145,7 +145,7 @@ public class AddItemActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Toast.makeText(AddItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(AddItemActivity.this, HomeActivity.class));
+                        startActivity(new Intent(AddItemActivity.this, SellerHomeActivity.class));
                     }
                 });
 

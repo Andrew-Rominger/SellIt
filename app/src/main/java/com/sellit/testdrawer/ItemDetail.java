@@ -95,11 +95,14 @@ public class ItemDetail extends AppCompatActivity {
                             Item item1 = new Item(item.name, item.price,
                                     item.description, item.rating, item.uid, true);
 
+                            dRef.child("items").child(Key).removeValue();
+
+                            DatabaseReference itemRef = dRef.child("soldItems/" + Key);
                             itemRef.updateChildren(item1.toMap());
                             Log.d(TAG, "ID: " + Key);
                             Toast.makeText(ItemDetail.this, "Item Marked As Sold", Toast.LENGTH_SHORT).show();
                             isOwner.setVisibility(View.INVISIBLE);
-                            //startActivity(new Intent(ItemDetail.this, HomeActivity.class));
+                            startActivity(new Intent(ItemDetail.this, SellerHomeActivity.class));
                         }
                     });
                 }
