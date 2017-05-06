@@ -17,8 +17,7 @@ public class GoalsActivity extends AppCompatActivity {
     Button continueBtn;
 
     EditText goalName;
-    EditText startDate;
-    EditText endDate;
+    EditText description;
     EditText amount;
 
     String UID;
@@ -33,8 +32,7 @@ public class GoalsActivity extends AppCompatActivity {
         continueBtn = (Button) findViewById(R.id.continueBtn);
 
         goalName = (EditText) findViewById(R.id.goalName);
-        startDate = (EditText) findViewById(R.id.startDate);
-        endDate = (EditText) findViewById(R.id.endDate);
+        description = (EditText) findViewById(R.id.description);
         amount = (EditText) findViewById(R.id.amount);
 
         Bundle b = getIntent().getExtras();
@@ -47,7 +45,7 @@ public class GoalsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GoalInfo info = new GoalInfo(UID, goalName.getText().toString(), amount.getText().toString(),
-                        startDate.getText().toString(), endDate.getText().toString());
+                        description.getText().toString());
 
                 mDatabase.child("studentInfo").child(UID).child("Goal").setValue(info);
                 toStudent();

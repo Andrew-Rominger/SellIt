@@ -1,5 +1,6 @@
 package com.sellit.testdrawer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,7 +44,7 @@ public class StudentSettings extends AppCompatActivity implements View.OnClickLi
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
-        String[] states = getResources().getStringArray(R.array.states);
+        final String[] states = getResources().getStringArray(R.array.states);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, states);
         stateSpinner = (Spinner) findViewById(R.id.spinnerStudentSettings);
         stateSpinner.setAdapter(adapter);
@@ -87,21 +88,24 @@ public class StudentSettings extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v)
     {
         FirebaseAuth.getInstance().getCurrentUser().updateEmail(email.getText().toString());
-        StudentInfo newData = new StudentInfo();
-        newData.city = city.getText().toString();
-        newData.fullName = fullName.getText().toString();
-        newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        newData.state = stateSpinner.getSelectedItem().toString();
-        newData.email = email.getText().toString();
-        newData.TAG = "StudentInfo";
-        newData.userName = Username.getText().toString();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        Intent intent = getIntent();
+        String uid = intent.getStringExtra("uid");
 
-        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference();
+        String updatedCity = city.getText().toString();
+        String updatedFullName = fullName.getText().toString();
+        String updatedEmail = email.getText().toString();
+        String updatedUsername = Username.getText().toString();
 
-        Map<String, Object> childUpdates = new HashMap<>();
-        Map<String, Object> newDataMap = newData.toStudentMap();
-        childUpdates.put("/studentInfo/"+newData.uid, newDataMap);
-        dRef.updateChildren(childUpdates);
+
+        mRef.child("studentInfo").child(uid).child("city").setValue(updatedCity);
+        mRef.child("studentInfo").child(uid).child("fullName").setValue(updatedFullName);
+        mRef.child("studentInfo").child(uid).child("uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        mRef.child("studentInfo").child(uid).child("state").setValue(stateSpinner.getSelectedItem().toString());
+        mRef.child("studentInfo").child(uid).child("email").setValue(updatedEmail);
+        mRef.child("studentInfo").child(uid).child("userName").setValue(updatedUsername);
+        mRef.child("studentInfo").child(uid).child("TAG").setValue("StudentInfo");
+
         Toast.makeText(this, "Saved Settings", Toast.LENGTH_LONG).show();
     }
 }

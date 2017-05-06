@@ -44,6 +44,7 @@ public class StudentProfileFragment extends Fragment {
     TextView fullName;
     TextView outOf;
     TextView goalName;
+    TextView goalDescription;
 
     String uid;
 
@@ -58,6 +59,7 @@ public class StudentProfileFragment extends Fragment {
         fullName = (TextView) myView.findViewById(R.id.fullName);
         outOf = (TextView) myView.findViewById(R.id.outOf);
         goalName = (TextView) myView.findViewById(R.id.currentGoal);
+        goalDescription = (TextView) myView.findViewById(R.id.description);
         uid = args.getString("uid");
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
         ValueEventListener listener = new ValueEventListener() {
@@ -91,6 +93,13 @@ public class StudentProfileFragment extends Fragment {
             }
             @Override public void onCancelled(DatabaseError error) { }
         });
+        mRef.child("studentInfo").child(uid).child("Goal").child("description").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                goalDescription.setText(snapshot.getValue().toString());
+            }
+            @Override public void onCancelled(DatabaseError error) { }
+        });
 
 
         return myView;
@@ -113,6 +122,7 @@ public class StudentProfileFragment extends Fragment {
 
     private void toSettingsMeth() {
         Intent intent = new Intent(getActivity(), StudentSettings.class);
+        intent.putExtra("uid",uid);
         startActivity(intent);
     }
 }
