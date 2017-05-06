@@ -71,12 +71,12 @@
             android:layout_weight=".5" />
 
         <EditText
-            android:id="@+id/startDate"
+            android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Start Date"
-            android:inputType="date"/>
+            android:hint="Description"
+            android:inputType="text" />
 
         <Space
             android:layout_width="0dp"
@@ -84,28 +84,7 @@
             android:layout_weight=".5" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/endDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="End Date"
-            android:inputType="date" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
 
     <Space
         android:layout_width="wrap_content"
