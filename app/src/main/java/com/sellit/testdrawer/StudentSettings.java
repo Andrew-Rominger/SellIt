@@ -84,24 +84,28 @@ public class StudentSettings extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onClick(View v)
-    {
-        FirebaseAuth.getInstance().getCurrentUser().updateEmail(email.getText().toString());
-        StudentInfo newData = new StudentInfo();
-        newData.city = city.getText().toString();
-        newData.fullName = fullName.getText().toString();
-        newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        newData.state = stateSpinner.getSelectedItem().toString();
-        newData.email = email.getText().toString();
-        newData.TAG = "StudentInfo";
-        newData.userName = Username.getText().toString();
+    public void onClick(View v) {
+        if (!city.getText().toString().isEmpty() && !fullName.getText().toString().isEmpty() && !email.getText().toString().isEmpty() && Username.getText().toString().isEmpty()) {
+            FirebaseAuth.getInstance().getCurrentUser().updateEmail(email.getText().toString());
+            StudentInfo newData = new StudentInfo();
+            newData.city = city.getText().toString();
+            newData.fullName = fullName.getText().toString();
+            newData.uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            newData.state = stateSpinner.getSelectedItem().toString();
+            newData.email = email.getText().toString();
+            newData.TAG = "StudentInfo";
+            newData.userName = Username.getText().toString();
 
-        DatabaseReference dRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference();
 
-        Map<String, Object> childUpdates = new HashMap<>();
-        Map<String, Object> newDataMap = newData.toStudentMap();
-        childUpdates.put("/studentInfo/"+newData.uid, newDataMap);
-        dRef.updateChildren(childUpdates);
-        Toast.makeText(this, "Saved Settings", Toast.LENGTH_LONG).show();
+            Map<String, Object> childUpdates = new HashMap<>();
+            Map<String, Object> newDataMap = newData.toStudentMap();
+            childUpdates.put("/studentInfo/" + newData.uid, newDataMap);
+            dRef.updateChildren(childUpdates);
+            Toast.makeText(this, "Saved Settings", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(StudentSettings.this, "All fields must be filled out to save.", Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 }

@@ -98,52 +98,57 @@ public class SignInActivity extends AppCompatActivity {
 
     //Function to retrieve information from the Firebase and to check if the correct information is submitted
     private void signInUser() {
-        mAuth.signInWithEmailAndPassword(userEmail.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String UID = user.getUid();
-                            Log.d(TAG, UID);
-                            String isStudentUID = mDatabase.child("studentInfo").child(UID).toString();
-                            isStudent = isStudentUID.replaceAll("https://nationals-master.firebaseio.com/studentInfo/", "");
-                            Log.d(TAG, isStudent);
+        if (!userEmail.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
+            mAuth.signInWithEmailAndPassword(userEmail.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String UID = user.getUid();
+                                Log.d(TAG, UID);
+                                String isStudentUID = mDatabase.child("studentInfo").child(UID).toString();
+                                isStudent = isStudentUID.replaceAll("https://nationals-master.firebaseio.com/studentInfo/", "");
+                                Log.d(TAG, isStudent);
 
-                            //Get datasnapshot at your "users" root node
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("studentInfo");
-                            ref.addListenerForSingleValueEvent(
-                                    new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            //Get map of users in datasnapshot
-                                            listStudents((Map<String, Object>) dataSnapshot.getValue());
-                                            Log.d(TAG, sStud);
-                                            if (sStud.contains(isStudent)) {
-                                                startActivity(new Intent(SignInActivity.this.getApplicationContext(), StudentHomeActivity.class));
-                                            } else {
-                                                startActivity(new Intent(SignInActivity.this.getApplicationContext(), HomeActivity.class));
+                                //Get datasnapshot at your "users" root node
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("studentInfo");
+                                ref.addListenerForSingleValueEvent(
+                                        new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //Get map of users in datasnapshot
+                                                listStudents((Map<String, Object>) dataSnapshot.getValue());
+                                                Log.d(TAG, sStud);
+                                                if (sStud.contains(isStudent)) {
+                                                    startActivity(new Intent(SignInActivity.this.getApplicationContext(), StudentHomeActivity.class));
+                                                } else {
+                                                    startActivity(new Intent(SignInActivity.this.getApplicationContext(), HomeActivity.class));
+                                                }
                                             }
-                                        }
 
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                            //handle databaseError
-                                        }
-                                    });
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+                                                //handle databaseError
+                                            }
+                                        });
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(SignInActivity.this, "Incorrect email or password.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
+                    });
+        } else {
+            Toast.makeText(SignInActivity.this, "Enter your email and password to sign in.", Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 
     //Function to navigate to the Home Screen

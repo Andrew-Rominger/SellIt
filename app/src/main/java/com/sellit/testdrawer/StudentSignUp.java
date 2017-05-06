@@ -77,40 +77,42 @@ public class StudentSignUp extends AppCompatActivity {
     }
 
 
-    private void signUp()
-    {
-        mAuth.createUserWithEmailAndPassword(emailBox.getText().toString(), passwordBox.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            String s = usernameBox.getText().toString();
-                            Log.d(TAG, "Username: " + s);
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            String UID = user.getUid();
-                            String userName = usernameBox.getText().toString();
-                            String name = fullName.getText().toString();
-                            StudentInfo info = new StudentInfo(UID, userName, name,
-                                    emailBox.getText().toString(), "", "");
+    private void signUp() {
+        if (!usernameBox.getText().toString().isEmpty() && !passwordBox.getText().toString().isEmpty() && !fullName.getText().toString().isEmpty() && !emailBox.getText().toString().isEmpty()) {
+            mAuth.createUserWithEmailAndPassword(emailBox.getText().toString(), passwordBox.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                String s = usernameBox.getText().toString();
+                                Log.d(TAG, "Username: " + s);
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String UID = user.getUid();
+                                String userName = usernameBox.getText().toString();
+                                String name = fullName.getText().toString();
+                                StudentInfo info = new StudentInfo(UID, userName, name,
+                                        emailBox.getText().toString(), "", "");
 
-                            mDatabase.child("studentInfo").child(UID).setValue(info);
-                            Intent intent = new Intent(StudentSignUp.this, GoalsActivity.class);
-                            intent.putExtra("UID", UID);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(StudentSignUp.this, "User already exists.",
-                                    Toast.LENGTH_SHORT).show();
+                                mDatabase.child("studentInfo").child(UID).setValue(info);
+                                Intent intent = new Intent(StudentSignUp.this, GoalsActivity.class);
+                                intent.putExtra("UID", UID);
+                                startActivity(intent);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(StudentSignUp.this, "User already exists.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
                         }
+                    });
 
-                        // ...
-                    }
-                });
-
+        } else {
+            Toast.makeText(StudentSignUp.this, "Fill out all fields to continue.", Toast.LENGTH_LONG).show();
+        }
     }
     //Function for clicking the Continue button and navigating to the Home Screen
 
