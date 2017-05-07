@@ -55,7 +55,6 @@ public class StudentHomeActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Student s = dataSnapshot.getValue(Student.class);
-
             }
 
             @Override

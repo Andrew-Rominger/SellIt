@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Andrew on 4/28/2017.
  */
 
+//Class made for defining a students properties
 public class Student
 {
     public String email;

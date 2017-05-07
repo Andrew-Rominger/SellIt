@@ -58,6 +58,8 @@ public class ProfileFragment extends Fragment {
         Bundle args = getArguments();
         uid = args.getString("uid");
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+
+        //Gets the users info from the database to populate all of the fields on this screen.
         ValueEventListener listener = new ValueEventListener()
         {
             @Override

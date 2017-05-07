@@ -180,8 +180,8 @@ public class SignInActivity extends AppCompatActivity {
         sStud = students.toString();
     }
 
-    private void promptEmail (){
-
+    private void promptEmail ()
+    {
         AlertDialog.Builder builder = new AlertDialog.Builder(SignInActivity.this);
         builder.setTitle("Email a recovery link");
         // I'm using fragment here so I'm using getView() to provide ViewGroup
@@ -213,7 +213,9 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void sendPwResetEmail(String email) {
+    //Sends an email to reset a forgotten password.
+    private void sendPwResetEmail(String email)
+    {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String emailAddress = email;
 
