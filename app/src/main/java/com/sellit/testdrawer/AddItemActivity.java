@@ -263,12 +263,10 @@ public class AddItemActivity extends AppCompatActivity {
             default:
                 break;
         }
+        myBitmap = getResizedBitmap(myBitmap, 800); //Change the 800 to change img compression ammount
+        imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
+    }
 
-            myBitmap = getResizedBitmap(myBitmap, 800); //Change the 800 to change img compression ammount
-            imagePic.setImageDrawable(new BitmapDrawable(getResources(), myBitmap));
-
-
-        }
     public static Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
@@ -293,6 +291,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     public void openBackCamera(int numCode, Context context)
     {
+        //Method opens the back camera on the phone
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = timeStamp + ".png";
         File storageDir = Environment.getExternalStoragePublicDirectory(

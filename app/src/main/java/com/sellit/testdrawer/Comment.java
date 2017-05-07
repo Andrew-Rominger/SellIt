@@ -8,6 +8,7 @@ import java.util.Map;
  * Created by Andrew on 4/29/2017.
  */
 
+//This is the comment class that identifies a comments property, and handles conversion from object to a HashMap.
 public class Comment
 {
     public String postID;

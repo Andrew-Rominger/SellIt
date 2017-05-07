@@ -32,6 +32,8 @@ import static com.google.android.gms.internal.zzt.TAG;
  * Created by jrkre on 5/4/2017.
  */
 
+
+//This was a work in progress fragment that would handle communication between users in-app.
 public class ChatFragment extends Fragment{
 
     RecyclerView recView;

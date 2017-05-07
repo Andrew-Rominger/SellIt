@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+//Modeled after the Item Fragment. Made to 
 public class DonateFragment extends Fragment {
 
     RecyclerView recView;

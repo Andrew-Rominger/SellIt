@@ -34,6 +34,7 @@ import java.util.Map;
  * Created by Josh on 4/29/2017.
  */
 
+//Fragment placed into the item detail page, to show comments list on a specific item.
 public class CommentFragment extends Fragment {
 
     String prevComment;

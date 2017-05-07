@@ -55,6 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        //Handles the event on which the user presses the back button on this activity.
         startActivity(new Intent(this, SignInActivity.class));
     }
 
@@ -68,7 +69,7 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //Function for clicking the Sign In Button and navigating to it
+    //Function for clicking the Sign In Button and navigating to the correct activity
     private void toSignInBtn() {
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
