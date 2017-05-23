@@ -1,13 +1,9 @@
 package com.sellit.testdrawer;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +13,7 @@ import android.widget.Button;
  * Created by 2524904 on 4/5/2017.
  */
 
+//Designed as a way for the user to sign out of the app, and have a way to disassociate the user details from the app.
 public class FourthFragment extends Fragment {
 
     View myView;

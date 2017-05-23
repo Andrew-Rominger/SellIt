@@ -7,6 +7,7 @@ import java.util.Map;
  * Created by Andrew on 4/28/2017.
  */
 
+//Class made to describe the properties of a users goal
 public class GoalInfo
 {
     public String goalName;

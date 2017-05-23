@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+//Activity to accommodate the activity drawer.
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseUser user;
@@ -89,6 +90,7 @@ public class HomeActivity extends AppCompatActivity
         transaction.commit();
     }
 
+    //Handles the event on which the back button is pressed
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -104,6 +106,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
+    //Handles the case that one of the buttons in the activity drawer is clicked.
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

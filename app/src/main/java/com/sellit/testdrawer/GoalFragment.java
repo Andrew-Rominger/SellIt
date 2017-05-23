@@ -1,13 +1,11 @@
 package com.sellit.testdrawer;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +32,7 @@ import java.util.Set;
  * Created by Andrewa on 4/29/2017.
  */
 
+//Intended to be able to make and display the user's goals.
 public class GoalFragment extends Fragment {
 
     RecyclerView recView;
@@ -41,18 +40,23 @@ public class GoalFragment extends Fragment {
     View myView;
 
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
+    {
         myView = inflater.inflate(R.layout.list_donations_fragment, container, false);
         return myView;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
         recView = (RecyclerView) view.findViewById(R.id.donationIncomingRecView);
         setupRec(view);
         super.onViewCreated(view, savedInstanceState);
     }
-    private void setupRec(View view) {
+
+    //Sets up the recycler view for inflated elements to be inserted into it.
+    private void setupRec(View view)
+    {
 
         getItems();
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
@@ -62,6 +66,7 @@ public class GoalFragment extends Fragment {
 
     }
 
+    //Gets the elements to be inserted into the recycler view fromm our database.
     public void getItems() {
         final ArrayList<Item> listItems = new ArrayList<>();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();

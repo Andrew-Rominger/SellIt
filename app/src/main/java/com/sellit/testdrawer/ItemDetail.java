@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+//Displays an items details, comments, and photo in the app
 public class ItemDetail extends AppCompatActivity {
     String currentUserName;
     String Key;
