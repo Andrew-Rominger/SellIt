@@ -8,15 +8,23 @@
     <!-- Image view for logo, currently don't have one developed. Uses a weight of 1 to determine the
     height.-->
     <ImageView
-        android:id="@+id/logoImg"
-        android:labelFor="@+id/logoImg"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:id="@+id/appLogo"
+        android:labelFor="@+id/appLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo_asset_1"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:contentDescription="@string/desc"
-        app:srcCompat="?android:attr/alertDialogIcon" />
+        android:contentDescription="@string/desc"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sell It"
+        android:textSize="45sp"
+        android:layout_gravity="center"/>
 
     <!-- Edit Text box for the user's sign in name, username.-->
     <EditText
@@ -24,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:labelFor="@+id/signInName"

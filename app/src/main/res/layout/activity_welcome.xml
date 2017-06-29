@@ -8,7 +8,7 @@
       android:id="@+id/welcomeStr"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Welcome"
+      android:text="Welcome!"
       android:layout_gravity="center_horizontal"
       android:textSize="25sp"/>
     <Space
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Are you a.."
+        android:text="Are you a..."
         android:textSize="20sp"/>
     <Space
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Buyer / Seller" />
+        android:text="Vendor" />
 
     <Space
         android:layout_width="wrap_content"

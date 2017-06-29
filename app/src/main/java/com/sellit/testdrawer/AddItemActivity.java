@@ -1,6 +1,7 @@
 package com.sellit.testdrawer;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -17,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -128,22 +130,39 @@ public class AddItemActivity extends AppCompatActivity {
                 Log.d(TAG, "ID: " + key);
                 StorageReference sRef = FirebaseStorage.getInstance().getReference().child("images/items/" + key + ".png");
                 ByteArrayOutputStream OS = new ByteArrayOutputStream();
-                myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
-                byte[] data = OS.toByteArray();
-                UploadTask UT = sRef.putBytes(data);
-                UT.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Could not save Image. " + e.getLocalizedMessage());
-                    }
-                });
-                UT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(AddItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(AddItemActivity.this, SellerHomeActivity.class));
-                    }
-                });
+                if (myBitmap == null) {
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(AddItemActivity.this);
+                    builder1.setMessage("You must add an image");
+                    builder1.setCancelable(true);
+
+                    builder1.setPositiveButton(
+                            "Ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = builder1.create();
+                    alert11.show();
+                } else {
+                    myBitmap.compress(Bitmap.CompressFormat.PNG, 100, OS);
+                    byte[] data = OS.toByteArray();
+                    UploadTask UT = sRef.putBytes(data);
+                    UT.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "Could not save Image. " + e.getLocalizedMessage());
+                        }
+                    });
+                    UT.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(AddItemActivity.this, "Saved Posting", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(AddItemActivity.this, SellerHomeActivity.class));
+                        }
+                    });
+                }
 
             }
         });

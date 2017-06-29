@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:text="@string/username"
         android:labelFor="@+id/studentUsername"
-        />
+        android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/studentFullName"
